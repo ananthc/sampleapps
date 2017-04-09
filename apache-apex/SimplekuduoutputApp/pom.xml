@@ -14,7 +14,7 @@
   <properties>
     <!-- change this if you desire to use a different version of DataTorrent -->
     <apex.version>3.5.0</apex.version>
-    <malhar.version>3.7.0</malhar.version>
+    <malhar.version>3.8.0-SNAPSHOT</malhar.version>
     <datatorrent.apppackage.classpath>lib/*.jar</datatorrent.apppackage.classpath>
   </properties>
 
@@ -255,8 +255,13 @@
   <dependencies>
     <!-- add your dependencies here -->
     <dependency>
+      <groupId>org.apache.kudu</groupId>
+      <artifactId>kudu-client</artifactId>
+      <version>1.3.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.apex</groupId>
-      <artifactId>malhar-library</artifactId>
+      <artifactId>malhar-contrib</artifactId>
       <version>${malhar.version}</version>
     </dependency>
     <dependency>
