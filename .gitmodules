@@ -1,0 +1,3 @@
+[submodule "apache-apex"]
+	path = apache-apex
+	url = git@github.com:ananthc/sampleapps
