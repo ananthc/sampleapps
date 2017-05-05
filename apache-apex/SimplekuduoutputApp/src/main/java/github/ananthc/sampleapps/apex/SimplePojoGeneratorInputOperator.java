@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.apex.malhar.contrib.kudu.KuduExecutionContext;
 import org.apache.kudu.ColumnSchema;
+import org.apache.kudu.Type;
+import org.apache.kudu.client.KuduClient;
 
 import com.datatorrent.api.DefaultOutputPort;
 import com.datatorrent.api.InputOperator;
@@ -50,7 +52,7 @@ public class SimplePojoGeneratorInputOperator extends BaseOperator implements In
     columns.add(longData);
     columnDefs.put("longdata",longData);
     ColumnSchema stringData = new ColumnSchema.ColumnSchemaBuilder("stringdata", Type.STRING)
-      .build();
+      .build();                                 ````````~ `~C D1  DC4 41    WSQZW45
     columns.add(stringData);
     columnDefs.put("stringdata",stringData);
     ColumnSchema timestampdata = new ColumnSchema.ColumnSchemaBuilder("timestampdata", Type.UNIXTIME_MICROS)
