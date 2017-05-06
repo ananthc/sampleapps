@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>github.ananthc.sampleapps.apex</groupId>
+  <version>1.0-SNAPSHOT</version>
+  <artifactId>apexapps</artifactId>
+  <packaging>jar</packaging>
+
+  <!-- change these to the appropriate values -->
+  <name>ApexApps</name>
+
+  <properties>
+    <!-- change this if you desire to use a different version of DataTorrent -->
+    <apex.version>3.5.0</apex.version>
+    <malhar.version>3.8.0-SNAPSHOT</malhar.version>
+    <datatorrent.apppackage.classpath>lib/*.jar</datatorrent.apppackage.classpath>
+  </properties>
+
+  <!-- repository to provide the DataTorrent artifacts -->
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>Datatorrent-Releases</id>
+      <name>DataTorrent Release Repository</name>
+      <url>https://www.datatorrent.com/maven/content/repositories/releases/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <id>DataTorrent-Snapshots</id>
+      <name>DataTorrent Early Access Program Snapshot Repository</name>
+      <url>https://www.datatorrent.com/maven/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-eclipse-plugin</artifactId>
+         <version>2.9</version>
+         <configuration>
+           <downloadSources>true</downloadSources>
+         </configuration>
+       </plugin>
+       <plugin>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <version>3.3</version>
+         <configuration>
+           <encoding>UTF-8</encoding>
+           <source>1.7</source>
+           <target>1.7</target>
+           <debug>true</debug>
+           <optimize>false</optimize>
+           <showDeprecation>true</showDeprecation>
+           <showWarnings>true</showWarnings>
+         </configuration>
+       </plugin>
+    </plugins>
+
+  </build>
+
+  <dependencies>
+    <!-- add your dependencies here -->
+    <dependency>
+      <groupId>org.apache.apex</groupId>
+      <artifactId>malhar-contrib</artifactId>
+      <version>${malhar.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.apex</groupId>
+      <artifactId>apex-common</artifactId>
+      <version>${apex.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.apex</groupId>
+      <artifactId>apex-engine</artifactId>
+      <version>${apex.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

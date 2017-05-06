@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <!-- change these to the appropriate values -->
-  <name>My Apex Application</name>
+  <name>KuduOutputApp</name>
   <description>My Apex Application Description</description>
 
   <properties>

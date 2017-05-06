@@ -52,7 +52,7 @@ public class SimplePojoGeneratorInputOperator extends BaseOperator implements In
     columns.add(longData);
     columnDefs.put("longdata",longData);
     ColumnSchema stringData = new ColumnSchema.ColumnSchemaBuilder("stringdata", Type.STRING)
-      .build();                                 ````````~ `~C D1  DC4 41    WSQZW45
+      .build();
     columns.add(stringData);
     columnDefs.put("stringdata",stringData);
     ColumnSchema timestampdata = new ColumnSchema.ColumnSchemaBuilder("timestampdata", Type.UNIXTIME_MICROS)
