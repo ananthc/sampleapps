@@ -25,7 +25,7 @@ public class SimplePojoGeneratorInputOperator extends BaseOperator implements In
 
   private SamplePojoPayload getPojoForInsert()
   {
-    SamplePojoPayload
+    return null;
   }
 
 

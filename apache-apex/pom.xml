@@ -5,7 +5,7 @@
   <groupId>github.ananthc.sampleapps.apex</groupId>
   <version>1.0-SNAPSHOT</version>
   <artifactId>apexapps</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <!-- change these to the appropriate values -->
   <name>ApexApps</name>
@@ -16,6 +16,10 @@
     <malhar.version>3.8.0-SNAPSHOT</malhar.version>
     <datatorrent.apppackage.classpath>lib/*.jar</datatorrent.apppackage.classpath>
   </properties>
+
+  <modules>
+    <module>SimplekuduoutputApp</module>
+  </modules>
 
   <!-- repository to provide the DataTorrent artifacts -->
   <repositories>
