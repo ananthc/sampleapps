@@ -44,6 +44,7 @@ public class Application implements StreamingApplication
     TransactionsTableKuduOutputOperator transactionsTableKuduOutputOperator = null;
     try {
       deviceStatusTableKuduOutputOperator = new BaseKuduOutputOperator();
+      deviceStatusTableKuduOutputOperator.
       transactionsTableKuduOutputOperator = new TransactionsTableKuduOutputOperator("transactiontable.properties");
     } catch (IOException| ClassNotFoundException e) {
       throw new RuntimeException(e);

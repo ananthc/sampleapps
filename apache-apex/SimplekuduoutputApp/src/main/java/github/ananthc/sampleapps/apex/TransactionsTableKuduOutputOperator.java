@@ -85,6 +85,9 @@ public class TransactionsTableKuduOutputOperator extends BaseKuduOutputOperator
   protected boolean isEligibleForPassivationInReconcilingWindow(KuduExecutionContext executionContext,
                                                                 long reconcilingWindowId)
   {
+    if (tableForReads == null) {
+      initConnectionForReads();
+    }
     KuduScanner.KuduScannerBuilder scannerBuilder = apexKuduConnectionForReads.getKuduClient()
                                                     .newScannerBuilder(tableForReads);
     KuduExecutionContext<TransactionPayload> executionContextForThisTuple =
