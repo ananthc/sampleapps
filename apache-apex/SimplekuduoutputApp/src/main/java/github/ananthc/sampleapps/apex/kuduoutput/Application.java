@@ -1,13 +1,11 @@
 /**
  * Put your copyright and license info here.
  */
-package github.ananthc.sampleapps.apex;
+package github.ananthc.sampleapps.apex.kuduoutput;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +22,6 @@ import org.apache.kudu.client.KuduException;
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.StreamingApplication;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
-import com.datatorrent.contrib.kafka.AbstractKafkaSinglePortInputOperator;
-import com.datatorrent.lib.io.ConsoleOutputOperator;
 
 @ApplicationAnnotation(name="KafkaToKuduSyncApp")
 public class Application implements StreamingApplication
@@ -44,7 +40,6 @@ public class Application implements StreamingApplication
     TransactionsTableKuduOutputOperator transactionsTableKuduOutputOperator = null;
     try {
       deviceStatusTableKuduOutputOperator = new BaseKuduOutputOperator();
-      deviceStatusTableKuduOutputOperator.
       transactionsTableKuduOutputOperator = new TransactionsTableKuduOutputOperator("transactiontable.properties");
     } catch (IOException| ClassNotFoundException e) {
       throw new RuntimeException(e);

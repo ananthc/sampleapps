@@ -1,12 +1,11 @@
 /**
  * Put your copyright and license info here.
  */
-package github.ananthc.sampleapps.apex;
+package github.ananthc.sampleapps.apex.kuduoutput;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

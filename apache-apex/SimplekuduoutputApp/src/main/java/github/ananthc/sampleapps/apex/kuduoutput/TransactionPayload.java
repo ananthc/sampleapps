@@ -1,4 +1,4 @@
-package github.ananthc.sampleapps.apex;
+package github.ananthc.sampleapps.apex.kuduoutput;
 
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Type;

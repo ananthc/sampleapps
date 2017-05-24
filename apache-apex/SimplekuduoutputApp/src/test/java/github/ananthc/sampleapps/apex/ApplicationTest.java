@@ -13,7 +13,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.junit.Test;
 
 import com.datatorrent.api.LocalMode;
-import github.ananthc.sampleapps.apex.Application;
+import github.ananthc.sampleapps.apex.kuduoutput.Application;
 
 /**
  * Test the DAG declaration in local mode.

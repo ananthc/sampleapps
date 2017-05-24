@@ -1,4 +1,4 @@
-package github.ananthc.sampleapps.apex;
+package github.ananthc.sampleapps.apex.kuduoutput;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,17 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.apache.apex.malhar.contrib.kudu.ApexKuduConnection;
 import org.apache.apex.malhar.contrib.kudu.BaseKuduOutputOperator;
 import org.apache.apex.malhar.contrib.kudu.KuduExecutionContext;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Type;
-import org.apache.kudu.client.KuduClient;
-import org.apache.kudu.client.KuduException;
 import org.apache.kudu.client.KuduPredicate;
 import org.apache.kudu.client.KuduScanner;
 import org.apache.kudu.client.KuduSession;
 import org.apache.kudu.client.KuduTable;
-import org.apache.kudu.client.RowResultIterator;
-import org.apache.kudu.client.Upsert;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
