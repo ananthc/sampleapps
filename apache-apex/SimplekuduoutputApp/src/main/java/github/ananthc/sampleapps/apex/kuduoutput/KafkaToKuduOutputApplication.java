@@ -63,11 +63,12 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
   {
     try {
       KuduClient kuduClient = getClientHandle();
-      if (!kuduClient.tableExists(transactionstableName)) {
-        createTableForTransactions(transactionstableName, kuduClient);
-        createTableForDevices(devicesTableName,kuduClient);
-        kuduClient.shutdown();
-      }
+      kuduClient.deleteTable(transactionstableName);
+      kuduClient.deleteTable(devicesTableName);
+      createTableForTransactions(transactionstableName, kuduClient);
+      createTableForDevices(devicesTableName,kuduClient);
+      kuduClient.shutdown();
+
     } catch (Exception ex) {
       throw new RuntimeException(ex);
     }
@@ -102,7 +103,7 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
     private void createTableForTransactions(String tableName, KuduClient client) throws Exception
   {
     List<ColumnSchema> columnsForTransactionsTable = new ArrayList<>();
-    ColumnSchema transactionidCol = new ColumnSchema.ColumnSchemaBuilder("transactionid", Type.BINARY)
+    ColumnSchema transactionidCol = new ColumnSchema.ColumnSchemaBuilder("transactionid", Type.STRING)
       .key(true)
       .build();
     columnsForTransactionsTable.add(transactionidCol);
