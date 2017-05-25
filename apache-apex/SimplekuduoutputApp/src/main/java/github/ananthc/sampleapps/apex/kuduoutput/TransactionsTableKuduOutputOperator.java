@@ -18,6 +18,9 @@ import org.apache.kudu.client.KuduScanner;
 import org.apache.kudu.client.KuduSession;
 import org.apache.kudu.client.KuduTable;
 
+import com.datatorrent.api.annotation.OperatorAnnotation;
+import com.datatorrent.api.annotation.Stateless;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**

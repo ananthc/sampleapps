@@ -24,10 +24,10 @@ import com.datatorrent.api.StreamingApplication;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
 
 @ApplicationAnnotation(name="KafkaToKuduSyncApp")
-public class Application implements StreamingApplication
+public class KafkaToKuduOutputApplication implements StreamingApplication
 {
 
-  private static final transient Logger LOG = LoggerFactory.getLogger(Application.class);
+  private static final transient Logger LOG = LoggerFactory.getLogger(KafkaToKuduOutputApplication.class);
 
   @Override
   public void populateDAG(DAG dag, Configuration conf)
@@ -49,7 +49,7 @@ public class Application implements StreamingApplication
     dag.addOperator("devicestatuskuduoutput",deviceStatusTableKuduOutputOperator);
     dag.addOperator("transactionstatuskuduoutput",transactionsTableKuduOutputOperator);
     dag.addStream("kafka2devicestatus",kafkaInput.outputForDeviceWrites, deviceStatusTableKuduOutputOperator.input);
-    dag.addStream("kafka2transactions",kafkaInput.outputForDeviceWrites, transactionsTableKuduOutputOperator.input);
+    dag.addStream("kafka2transactions",kafkaInput.outputForTransactionWrites, transactionsTableKuduOutputOperator.input);
   }
 
   private KuduClient getClientHandle() throws Exception

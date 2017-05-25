@@ -33,16 +33,18 @@ public class KafkaStreamInputOperator extends AbstractKafkaInputOperator
   public final transient DefaultOutputPort<KuduExecutionContext<TransactionPayload>> outputForDeviceWrites =
     new DefaultOutputPort<>();
 
-  private Set<String> doNotWriteColumnsForTransactionsTable = new HashSet<>();
+  private transient Set<String> doNotWriteColumnsForTransactionsTable;
 
   private static final transient Logger LOG = LoggerFactory.getLogger(KafkaStreamInputOperator.class);
 
-  ObjectMapper objectMapper = new ObjectMapper();
+  private ObjectMapper objectMapper = null;
 
   @Override
   public void setup(Context.OperatorContext context)
   {
     super.setup(context);
+    objectMapper = new ObjectMapper();
+    doNotWriteColumnsForTransactionsTable = new HashSet<>();
     doNotWriteColumnsForTransactionsTable.add("transaction_amnt");
   }
 

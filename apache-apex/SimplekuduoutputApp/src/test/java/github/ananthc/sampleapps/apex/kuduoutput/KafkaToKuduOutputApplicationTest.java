@@ -1,24 +1,24 @@
 /**
  * Put your copyright and license info here.
  */
-package github.ananthc.sampleapps.apex;
+package github.ananthc.sampleapps.apex.kuduoutput;
 
 import java.io.IOException;
 
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Assert;
-
-import org.apache.hadoop.conf.Configuration;
 import org.junit.Test;
 
+import org.apache.hadoop.conf.Configuration;
+
 import com.datatorrent.api.LocalMode;
-import github.ananthc.sampleapps.apex.kuduoutput.Application;
 
 /**
  * Test the DAG declaration in local mode.
  */
-public class ApplicationTest {
+public class KafkaToKuduOutputApplicationTest
+{
 
   @Test
   public void testApplication() throws IOException, Exception {
@@ -26,7 +26,7 @@ public class ApplicationTest {
       LocalMode lma = LocalMode.newInstance();
       Configuration conf = new Configuration(false);
       conf.addResource(this.getClass().getResourceAsStream("/META-INF/properties.xml"));
-      lma.prepareDAG(new Application(), conf);
+      lma.prepareDAG(new github.ananthc.sampleapps.apex.kuduoutput.KafkaToKuduOutputApplication(), conf);
       LocalMode.Controller lc = lma.getController();
       lc.run(10000); // runs for 10 seconds and quits
     } catch (ConstraintViolationException e) {

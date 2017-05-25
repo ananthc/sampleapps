@@ -3,18 +3,17 @@ package github.ananthc.sampleapps.apex.kuduoutput.generate;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-import org.codehaus.jackson.map.ObjectMapper;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import github.ananthc.sampleapps.apex.kuduoutput.TransactionPayload;
 
@@ -101,7 +100,7 @@ public class KafkaDataGenerator
 
   public static void main(String[] args)
   {
-    KafkaDataGenerator kafkaDataGenerator = new KafkaDataGenerator("transactions", "192.168.");
+    KafkaDataGenerator kafkaDataGenerator = new KafkaDataGenerator("transactions", "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
     try {
       kafkaDataGenerator.writeTestDataSet();
     } catch (IOException e) {
