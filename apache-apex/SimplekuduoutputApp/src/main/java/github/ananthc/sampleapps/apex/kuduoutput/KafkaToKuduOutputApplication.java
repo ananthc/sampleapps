@@ -6,11 +6,13 @@ package github.ananthc.sampleapps.apex.kuduoutput;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.apache.apex.malhar.contrib.kudu.BaseKuduOutputOperator;
+import org.apache.apex.malhar.kafka.AbstractKafkaInputOperator;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Schema;
@@ -34,8 +36,12 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
   {
     ensureTablesPresent("transactions","devicestatus");
     KafkaStreamInputOperator kafkaInput = new KafkaStreamInputOperator();
-    kafkaInput.setClusters("192.168.1.46:9092");
+    Properties props = new Properties();
+    props.put("client.id","KuduoutputApexApp");
+    kafkaInput.setClusters("192.168.1.204:9092");
     kafkaInput.setTopics("transactions");
+    //kafkaInput.setConsumerProps(props);
+    kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
     BaseKuduOutputOperator deviceStatusTableKuduOutputOperator = null;
     TransactionsTableKuduOutputOperator transactionsTableKuduOutputOperator = null;
     try {
@@ -82,6 +88,9 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
       .key(true)
       .build();
     columnsForDevicesTable.add(deviceIdCol);
+    ColumnSchema timestampCol = new ColumnSchema.ColumnSchemaBuilder("timestamp", Type.UNIXTIME_MICROS)
+      .build();
+    columnsForDevicesTable.add(timestampCol);
 
     List<String> hashPartitions = new ArrayList<>();
     hashPartitions.add("deviceid");

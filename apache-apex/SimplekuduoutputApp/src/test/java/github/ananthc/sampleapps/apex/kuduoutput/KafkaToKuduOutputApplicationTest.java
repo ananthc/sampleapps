@@ -28,7 +28,7 @@ public class KafkaToKuduOutputApplicationTest
       conf.addResource(this.getClass().getResourceAsStream("/META-INF/properties.xml"));
       lma.prepareDAG(new github.ananthc.sampleapps.apex.kuduoutput.KafkaToKuduOutputApplication(), conf);
       LocalMode.Controller lc = lma.getController();
-      lc.run(10000); // runs for 10 seconds and quits
+      lc.run(1000000); // runs for 10 seconds and quits
     } catch (ConstraintViolationException e) {
       Assert.fail("constraint violations: " + e.getConstraintViolations());
     }
