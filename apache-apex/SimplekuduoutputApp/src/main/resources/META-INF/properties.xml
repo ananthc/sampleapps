@@ -11,5 +11,10 @@
     <value>2048</value>
   </property>
 
+  <property>
+    <name>dt.application.KafkaToKuduSyncApp.operator.KafkaStreamInputOperator.attr.PARTITIONER</name>
+    <value>com.datatorrent.common.partitioner.StatelessPartitioner:1</value>
+  </property>
+
 </configuration>
 

@@ -60,12 +60,15 @@ public class KafkaStreamInputOperator extends AbstractKafkaInputOperator
     if (payload == null) {
       return;
     }
+    /*
     if (payload.getTransactionEditMode() == 'i') {
       outputForTransactionWrites.emit(resolveExecutionContextForTransactTable(payload));
     }
     if (payload.getTransactionEditMode() == 'u') {
       outputForTransactionWrites.emit(resolveExecutionContextForUpdate(payload));
     }
+    */
+    LOG.info("Writing " + payload + " to devices ");
     outputForDeviceWrites.emit(resolveExecutionContextForDevicesTable(payload));
   }
 

@@ -74,8 +74,8 @@ public class KafkaDataGenerator
       TransactionPayload aPayload = new TransactionPayload();
       aPayload.setDeviceId(""+i);
       aPayload.setTransactionId(""+i);
-      aPayload.setTimestamp(System.currentTimeMillis());
-      aPayload.setTransactionAmount(random.nextDouble());
+      aPayload.setTimestamp(System.currentTimeMillis() * 1000);
+      aPayload.setTransactionAmount(random.nextDouble() * 1000);
       aPayload.setTransactionEditMode('i');
       aPayload.setStepUp(false);
       lookupOfRecords.put(i,aPayload);
@@ -100,7 +100,7 @@ public class KafkaDataGenerator
 
   public static void main(String[] args)
   {
-    KafkaDataGenerator kafkaDataGenerator = new KafkaDataGenerator("transactions", "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
+    KafkaDataGenerator kafkaDataGenerator = new KafkaDataGenerator("transactionfeeds", "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
     try {
       kafkaDataGenerator.writeTestDataSet();
     } catch (IOException e) {

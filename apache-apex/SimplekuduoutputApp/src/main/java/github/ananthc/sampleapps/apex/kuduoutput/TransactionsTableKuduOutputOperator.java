@@ -43,6 +43,7 @@ public class TransactionsTableKuduOutputOperator extends BaseKuduOutputOperator
 
   public TransactionsTableKuduOutputOperator() throws IOException, ClassNotFoundException
   {
+    super();
   }
 
   public TransactionsTableKuduOutputOperator(String configFileInClasspath) throws IOException, ClassNotFoundException

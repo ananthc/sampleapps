@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import org.apache.apex.malhar.contrib.kudu.BaseKuduOutputOperator;
 import org.apache.apex.malhar.kafka.AbstractKafkaInputOperator;
+import org.apache.apex.malhar.kafka.PartitionStrategy;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Schema;
@@ -34,14 +35,15 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
   @Override
   public void populateDAG(DAG dag, Configuration conf)
   {
-    ensureTablesPresent("transactions","devicestatus");
+    ensureTablesPresent("transactions","devices");
     KafkaStreamInputOperator kafkaInput = new KafkaStreamInputOperator();
     Properties props = new Properties();
-    props.put("client.id","KuduoutputApexApp");
+    props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
     kafkaInput.setClusters("192.168.1.204:9092");
-    kafkaInput.setTopics("transactions");
-    //kafkaInput.setConsumerProps(props);
+    kafkaInput.setTopics("transactionfeeds");
+    kafkaInput.setConsumerProps(props);
     kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
+    kafkaInput.setStrategy(PartitionStrategy.ONE_TO_MANY.name());
     BaseKuduOutputOperator deviceStatusTableKuduOutputOperator = null;
     TransactionsTableKuduOutputOperator transactionsTableKuduOutputOperator = null;
     try {
@@ -69,8 +71,12 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
   {
     try {
       KuduClient kuduClient = getClientHandle();
-      kuduClient.deleteTable(transactionstableName);
-      kuduClient.deleteTable(devicesTableName);
+      if (kuduClient.tableExists(transactionstableName)) {
+        kuduClient.deleteTable(transactionstableName);
+      }
+      if (kuduClient.tableExists(devicesTableName)) {
+        kuduClient.deleteTable(devicesTableName);
+      }
       createTableForTransactions(transactionstableName, kuduClient);
       createTableForDevices(devicesTableName,kuduClient);
       kuduClient.shutdown();
@@ -96,9 +102,9 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
     hashPartitions.add("deviceid");
 
 
-    Schema schemaForTransactionsTable = new Schema(columnsForDevicesTable);
+    Schema schemaForDevicesTable = new Schema(columnsForDevicesTable);
     try {
-      client.createTable(tableName, schemaForTransactionsTable,
+      client.createTable(tableName, schemaForDevicesTable,
         new CreateTableOptions()
           .setNumReplicas(3)
           .addHashPartitions(hashPartitions,2));
