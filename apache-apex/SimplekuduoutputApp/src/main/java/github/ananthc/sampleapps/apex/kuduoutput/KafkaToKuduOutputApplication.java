@@ -35,7 +35,7 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
   @Override
   public void populateDAG(DAG dag, Configuration conf)
   {
-    ensureTablesPresent("transactions","devices");
+    ensureTablesPresent("transactions","zetadevices");
     KafkaStreamInputOperator kafkaInput = new KafkaStreamInputOperator();
     Properties props = new Properties();
     props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
@@ -95,9 +95,17 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
       .build();
     columnsForDevicesTable.add(deviceIdCol);
     ColumnSchema timestampCol = new ColumnSchema.ColumnSchemaBuilder("timestamp", Type.UNIXTIME_MICROS)
+      .key(true)
       .build();
     columnsForDevicesTable.add(timestampCol);
+    ColumnSchema transactionAmtCol = new ColumnSchema.ColumnSchemaBuilder("transaction_amnt", Type.DOUBLE)
+      .key(false)
+      .build();
+    columnsForDevicesTable.add(transactionAmtCol);
 
+
+    List<String> rangeKeys = new ArrayList<>();
+    rangeKeys.add("timestamp");
     List<String> hashPartitions = new ArrayList<>();
     hashPartitions.add("deviceid");
 
@@ -107,7 +115,8 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
       client.createTable(tableName, schemaForDevicesTable,
         new CreateTableOptions()
           .setNumReplicas(3)
-          .addHashPartitions(hashPartitions,2));
+          .setRangePartitionColumns(rangeKeys)
+          .addHashPartitions(hashPartitions,7));
     } catch (KuduException e) {
       LOG.error("Error while creating table for unit tests " + e.getMessage(), e);
       throw e;

@@ -80,4 +80,17 @@ public class TransactionPayload
   {
     this.transactionEditMode = transactionEditMode;
   }
+
+  @Override
+  public String toString()
+  {
+    return "TransactionPayload{" +
+      "transactionId='" + transactionId + '\'' +
+      ", timestamp=" + timestamp +
+      ", stepUp=" + stepUp +
+      ", deviceId='" + deviceId + '\'' +
+      ", transactionAmount=" + transactionAmount +
+      ", transactionEditMode=" + transactionEditMode +
+      '}';
+  }
 }

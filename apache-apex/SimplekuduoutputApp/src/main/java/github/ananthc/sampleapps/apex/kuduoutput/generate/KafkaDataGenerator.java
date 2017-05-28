@@ -23,7 +23,7 @@ public class KafkaDataGenerator
   private final KafkaProducer<Integer, String> producer;
   private final String topic;
 
-  private static final int NUM_MESSAGES = 100000;
+  private static final int NUM_MESSAGES = 1000000;
   private static final  int STEPUP_EVERY_NTH_TUPLE = 100;
 
   private static final int OUT_OF_BAND__TRANSACTION_EVERY_NTH_TUPLE = 150;
