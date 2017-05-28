@@ -98,7 +98,7 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
       .key(true)
       .build();
     columnsForDevicesTable.add(timestampCol);
-    ColumnSchema transactionAmtCol = new ColumnSchema.ColumnSchemaBuilder("transaction_amnt", Type.DOUBLE)
+    ColumnSchema transactionAmtCol = new ColumnSchema.ColumnSchemaBuilder("transactionAmount", Type.DOUBLE)
       .key(false)
       .build();
     columnsForDevicesTable.add(transactionAmtCol);
