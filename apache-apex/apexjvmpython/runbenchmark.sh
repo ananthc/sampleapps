@@ -1,0 +1,1 @@
+java -jar target/benchmarks.jar -Djava.library.path=/Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python2.7/site-packages/jep
