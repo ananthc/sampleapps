@@ -35,35 +35,71 @@ import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
 
 import jep.Jep;
 import jep.JepConfig;
 
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@State(Scope.Benchmark)
 public class JepBenchmark
 {
 
-    public static Jep jepInstance;
+    @Benchmark @BenchmarkMode(Mode.AverageTime) @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    public void testSVMPredictWithConstantParams(JepHandle jepHandle) throws Exception {
+      jepHandle.jepInstance.eval("res = svmmodel.predict([[4., 4., 6.,8.]])");
+      jepHandle.jepInstance.getValue("res");
+    }
 
-    static {
+
+  @State(Scope.Thread)
+  public static class JepHandle
+  {
+    public Jep jepInstance;
+
+    @Setup(Level.Trial)
+    public void initJep()
+    {
       System.out.println("Lib path = " + System.getProperty("java.library.path"));
       try {
         System.loadLibrary("jep");
-        JepConfig config = new JepConfig().setRedirectOutputStreams(true).setInteractive(false);
+        JepConfig config = new JepConfig()
+          .setRedirectOutputStreams(true)
+          .setInteractive(false)
+          .setClassLoader(Thread.currentThread().getContextClassLoader()
+          );
         jepInstance = new Jep(config);
         jepInstance.eval("from sklearn.externals import joblib");
         System.out.println("Status of loaded model ... " + jepInstance.eval("svmmodel = joblib.load('/tmp/svmmodel1')"));
       } catch (Exception ex) {
         ex.printStackTrace();
       }
-
     }
 
-    @Benchmark @BenchmarkMode(Mode.AverageTime) @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void testSVMPredictWithConstantParams() throws Exception {
-      jepInstance.eval("res = svmmodel.predict([[4., 4., 6.,8.]])");
-      jepInstance.getValue("res");
+    @TearDown(Level.Trial)
+    public void closeJep()
+    {
+      jepInstance.close();
     }
+
+
+    public Jep getJepInstance()
+    {
+      return jepInstance;
+    }
+
+    public void setJepInstance(Jep jepInstance)
+    {
+      this.jepInstance = jepInstance;
+    }
+  }
+
 
 }
