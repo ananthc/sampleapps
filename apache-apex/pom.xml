@@ -19,6 +19,7 @@
 
   <modules>
     <module>SimplekuduoutputApp</module>
+    <module>apexjvmpython</module>
   </modules>
 
   <!-- repository to provide the DataTorrent artifacts -->
