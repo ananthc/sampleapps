@@ -42,6 +42,7 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.infra.Blackhole;
 
 import jep.Jep;
 import jep.JepConfig;
@@ -53,9 +54,10 @@ public class JepBenchmark
 {
 
     @Benchmark @BenchmarkMode(Mode.AverageTime) @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void testSVMPredictWithConstantParams(JepHandle jepHandle) throws Exception {
+    public void testSVMPredictWithConstantParams(JepHandle jepHandle, Blackhole sink) throws Exception {
       jepHandle.jepInstance.eval("res = svmmodel.predict([[4., 4., 6.,8.]])");
-      jepHandle.jepInstance.getValue("res");
+      Object respnseValue = jepHandle.jepInstance.getValue("res");
+      sink.consume(respnseValue);
     }
 
 

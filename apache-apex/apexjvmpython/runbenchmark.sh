@@ -1,2 +1,0 @@
-#!/bin/bash
-exec "/usr/bin/java -Djava.library.path=/Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python2.7/site-packages/jep -jar /Users/Ananth/work/sampleapps/apache-apex/apexjvmpython/target/benchmarks.jar"
