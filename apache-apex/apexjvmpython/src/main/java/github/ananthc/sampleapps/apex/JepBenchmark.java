@@ -54,8 +54,11 @@ public class JepBenchmark
 {
 
     @Benchmark @BenchmarkMode(Mode.AverageTime) @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    public void testSVMPredictWithConstantParams(JepHandle jepHandle, Blackhole sink) throws Exception {
-      jepHandle.jepInstance.eval("res = svmmodel.predict([[4., 4., 6.,8.]])");
+    public void testSVMPredictWithConstantParams(JepHandle jepHandle, Blackhole sink, SVMScoringInputData input)
+        throws Exception {
+      jepHandle.getJepInstance().set("input",input.getNd());
+      //jepHandle.jepInstance.eval("res = svmmodel.predict([[4., 4., 6.,8.]])");
+      jepHandle.jepInstance.eval("res = svmmodel.predict(input)");
       Object respnseValue = jepHandle.jepInstance.getValue("res");
       sink.consume(respnseValue);
     }
