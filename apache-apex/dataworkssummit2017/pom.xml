@@ -7,7 +7,7 @@
 <version>1.0-SNAPSHOT</version>
 
 <!-- change these to the appropriate values -->
-<name>Kafka2KuduSyncApp</name>
+<name>DataworksSummit2017ApexKudu</name>
 <description>My Apex Application Description</description>
 
 <properties>
