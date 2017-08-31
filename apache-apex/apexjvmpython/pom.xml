@@ -61,7 +61,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jep</groupId>
+            <groupId>org.ninia.jep</groupId>
             <artifactId>jep-java-dependencies</artifactId>
             <version>3.7.0</version>
         </dependency>
