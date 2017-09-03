@@ -10,8 +10,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.apex.malhar.contrib.kudu.KuduExecutionContext;
-import org.apache.apex.malhar.contrib.kudu.KuduMutationType;
+import org.apache.apex.malhar.kudu.KuduExecutionContext;
+import org.apache.apex.malhar.kudu.KuduMutationType;
 import org.apache.apex.malhar.kafka.AbstractKafkaInputOperator;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 

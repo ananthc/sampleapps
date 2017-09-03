@@ -6,8 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.apex.malhar.contrib.kudu.BaseKuduOutputOperator;
-import org.apache.apex.malhar.contrib.kudu.KuduExecutionContext;
+import org.apache.apex.malhar.kudu.BaseKuduOutputOperator;
+import org.apache.apex.malhar.kudu.KuduExecutionContext;
 import org.apache.apex.malhar.lib.wal.WindowDataManager;
 
 /**
@@ -21,17 +21,13 @@ public class DevicesKuduOutputoperator extends BaseKuduOutputOperator
 
   public DevicesKuduOutputoperator() throws IOException, ClassNotFoundException
   {
+    super();
   }
 
   public DevicesKuduOutputoperator(WindowDataManager windowManager, String configFileInClasspath)
     throws IOException, ClassNotFoundException
   {
-    super(windowManager, configFileInClasspath);
-  }
-
-  public DevicesKuduOutputoperator(WindowDataManager windowManager) throws IOException, ClassNotFoundException
-  {
-    super(windowManager);
+    super(configFileInClasspath);
   }
 
   public DevicesKuduOutputoperator(String configFileInClasspath) throws IOException, ClassNotFoundException

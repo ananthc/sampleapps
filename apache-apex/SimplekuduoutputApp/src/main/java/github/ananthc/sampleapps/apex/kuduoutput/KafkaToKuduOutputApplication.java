@@ -11,7 +11,7 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.apex.malhar.contrib.kudu.BaseKuduOutputOperator;
+import org.apache.apex.malhar.kudu.BaseKuduOutputOperator;
 import org.apache.apex.malhar.kafka.AbstractKafkaInputOperator;
 import org.apache.apex.malhar.kafka.PartitionStrategy;
 import org.apache.hadoop.conf.Configuration;

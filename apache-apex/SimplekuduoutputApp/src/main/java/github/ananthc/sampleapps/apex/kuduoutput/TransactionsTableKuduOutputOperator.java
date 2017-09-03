@@ -8,18 +8,15 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.apex.malhar.contrib.kudu.ApexKuduConnection;
-import org.apache.apex.malhar.contrib.kudu.BaseKuduOutputOperator;
-import org.apache.apex.malhar.contrib.kudu.KuduExecutionContext;
+import org.apache.apex.malhar.kudu.ApexKuduConnection;
+import org.apache.apex.malhar.kudu.BaseKuduOutputOperator;
+import org.apache.apex.malhar.kudu.KuduExecutionContext;
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Type;
 import org.apache.kudu.client.KuduPredicate;
 import org.apache.kudu.client.KuduScanner;
 import org.apache.kudu.client.KuduSession;
 import org.apache.kudu.client.KuduTable;
-
-import com.datatorrent.api.annotation.OperatorAnnotation;
-import com.datatorrent.api.annotation.Stateless;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

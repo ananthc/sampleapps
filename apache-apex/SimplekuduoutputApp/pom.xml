@@ -287,6 +287,11 @@
     </dependency>
     <dependency>
       <groupId>org.apache.apex</groupId>
+      <artifactId>malhar-kudu</artifactId>
+      <version>${malhar.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.apex</groupId>
       <artifactId>apex-common</artifactId>
       <version>${apex.version}</version>
       <scope>provided</scope>
