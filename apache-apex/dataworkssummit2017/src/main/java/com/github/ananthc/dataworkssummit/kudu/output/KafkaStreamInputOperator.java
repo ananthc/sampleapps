@@ -48,22 +48,15 @@ public class KafkaStreamInputOperator extends AbstractKafkaInputOperator
   @Override
   protected void emitTuple(String clusterName, ConsumerRecord<byte[], byte[]> consumerRecord)
   {
-    TransactionPayload payload = null;
+    FiftyColsPojo payload = null;
     try {
-      payload = objectMapper.readValue(consumerRecord.value(),TransactionPayload.class);
+      payload = objectMapper.readValue(consumerRecord.value(),FiftyColsPojo.class);
     } catch (IOException e) {
       LOG.error(e.getMessage());
     }
     if (payload == null) {
       return;
     }
-    if (payload.getTransactionEditMode() == 'i') {
-      outputForTransactionWrites.emit(resolveExecutionContextForTransactTable(payload));
-    }
-    if (payload.getTransactionEditMode() == 'u') {
-      outputForTransactionWrites.emit(resolveExecutionContextForUpdate(payload));
-    }
-    outputForDeviceWrites.emit(resolveExecutionContextForDevicesTable(payload));
   }
 
 

@@ -35,21 +35,21 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
   @Override
   public void populateDAG(DAG dag, Configuration conf)
   {
-    ensureTablesPresent();
+    //ensureTablesPresent();
     KafkaStreamInputOperator kafkaInput = new KafkaStreamInputOperator();
     Properties props = new Properties();
     props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
-    kafkaInput.setClusters();
-    kafkaInput.setTopics();
+    //kafkaInput.setClusters();
+    //kafkaInput.setTopics();
     kafkaInput.setConsumerProps(props);
     kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
     kafkaInput.setStrategy(PartitionStrategy.ONE_TO_MANY.name());
     BaseKuduOutputOperator tableKuduOutputOperator = null;
-    try {
-      tableKuduOutputOperator = new BaseKuduOutputOperator(asa);
-    } catch (IOException| ClassNotFoundException e) {
-      throw new RuntimeException(e);
-    }
+//    try {
+//      tableKuduOutputOperator = new BaseKuduOutputOperator(asa);
+//    } catch (IOException| ClassNotFoundException e) {
+//      throw new RuntimeException(e);
+//    }
     dag.addOperator("kafkaInput",kafkaInput);
     dag.addOperator("tableOutput",tableKuduOutputOperator);
     dag.addStream("kafka2tableoutput",kafkaInput.outputFor25ColTransactionWrites, tableKuduOutputOperator.input);
@@ -58,7 +58,7 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
 
   private KuduClient getClientHandle() throws Exception
   {
-    KuduClient.KuduClientBuilder builder = new KuduClient.KuduClientBuilder();
+    KuduClient.KuduClientBuilder builder = null; // new KuduClient.KuduClientBuilder();
     KuduClient client = builder.build();
     return client;
   }
@@ -99,7 +99,7 @@ public class KafkaToKuduOutputApplication implements StreamingApplication
     hashPartitions.add("timestamprowkey");
 
 
-    Schema schemaForDevicesTable = new Schema(columnsForDevicesTable);
+    Schema schemaForDevicesTable = null; // new Schema(columnsForDevicesTable);
     try {
       client.createTable(tableName, schemaForDevicesTable,
         new CreateTableOptions()
