@@ -1,4 +1,4 @@
-package com.github.ananthc.dataworkssummit.datagenerator.pojos;
+package com.github.ananthc.dataworkssummit.pojos;
 
 
 public class HundredColsPojo

@@ -12,7 +12,7 @@ public class ClassSourceCodeGenerator
   private String getClassTemplate(String className)
   {
     return "" +
-      "package com.github.ananthc.dataworkssummit.datagenerator.pojos;\n" +
+      "package com.github.ananthc.dataworkssummit.pojos;\n" +
       "\n" +
       "\n" +
       "public class "+ className + "\n" +
