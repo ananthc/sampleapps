@@ -11,9 +11,10 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.ananthc.dataworkssummit.pojos.BasePojo;
 import com.github.ananthc.dataworkssummit.pojos.FiftyColsPojo;
 import com.github.ananthc.dataworkssummit.pojos.HundredColsPojo;
-import com.github.ananthc.dataworkssummit.pojos.TwentyFiftyColsPojo;
+import com.github.ananthc.dataworkssummit.pojos.TwentyFiveColsPojo;
 
 import com.datatorrent.lib.util.PojoUtils;
 
@@ -23,7 +24,7 @@ public class KafkaPojoDataGenerator
   private final KafkaProducer<Integer, String> producer;
   private final String topic;
 
-  private static final int NUM_MESSAGES = 5000000;
+  private static final int NUM_MESSAGES = 1000000;
 
   private static final Random random = new Random();
 
@@ -35,6 +36,8 @@ public class KafkaPojoDataGenerator
     Properties props = new Properties();
     props.put("bootstrap.servers", hosts);
     props.put("client.id", "KuduOutputProducer");
+    props.put("retries", 10);
+    props.put("max.in.flight.requests.per.connection",1);
     props.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
     producer = new KafkaProducer<>(props);
@@ -43,7 +46,7 @@ public class KafkaPojoDataGenerator
 
   public void writeMessage(int messageKey, String message)
   {
-    System.out.println(message);
+    //System.out.println(message);
     try {
       producer.send(new ProducerRecord<>(topic,
         messageKey,
@@ -54,7 +57,7 @@ public class KafkaPojoDataGenerator
   }
 
   public void generateTestDataSet(int numRanges, Class clazzHandle, int numIntCols, int floatCols,
-    int strCols) throws IOException
+    int strCols) throws IOException, InterruptedException, IllegalAccessException, InstantiationException
   {
     Map<String,Object> settersMap = new HashMap<>();
     generateSetters(settersMap,clazzHandle,numIntCols,floatCols,strCols);
@@ -71,7 +74,19 @@ public class KafkaPojoDataGenerator
     }
     ObjectMapper mapper = new ObjectMapper();
     for (int i=0; i < NUM_MESSAGES; i++) {
-      FiftyColsPojo aPayload = new FiftyColsPojo();
+      BasePojo aPayload = null;
+      if (clazzHandle.getName().endsWith("FiftyColsPojo")) {
+        aPayload = new FiftyColsPojo();
+      }
+      if (clazzHandle.getName().endsWith("TwentyFiveColsPojo")) {
+        aPayload = new TwentyFiveColsPojo();
+      }
+      if (clazzHandle.getName().endsWith("HundredColsPojo")) {
+        aPayload = new HundredColsPojo();
+      }
+      if ( aPayload == null) {
+        throw new InstantiationException("Class instantiation is not supported inside data generator");
+      }
       for(String colName : settersMap.keySet()) {
         if ( colName.startsWith("int")) {
           ((PojoUtils.SetterInt)settersMap.get(colName)).set(aPayload,random.nextInt());
@@ -105,43 +120,43 @@ public class KafkaPojoDataGenerator
     settersCollection.put("timestampRowKey", PojoUtils.createSetterInt(clazzHandle,"timestampRowKey"));
   }
 
-  public static void main(String[] args)
+  public static void main(String[] args) throws InterruptedException, InstantiationException, IllegalAccessException
   {
-    KafkaPojoDataGenerator kafkaPojoDataGenerator = new KafkaPojoDataGenerator("fiftycolpojos3tablets",
-        "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
+//    KafkaPojoDataGenerator kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets50cols",
+//      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
+//    try {
+//      kafkaPojoDataGenerator.generateTestDataSet(3, FiftyColsPojo.class, 30,8,10);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu6tablets50cols",
+//      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
+//    try {
+//      kafkaPojoDataGenerator.generateTestDataSet(6,FiftyColsPojo.class, 30,8,10);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//
+//    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu12tablets50cols",
+//      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
+//    try {
+//      kafkaPojoDataGenerator.generateTestDataSet(12,FiftyColsPojo.class, 30,8,10);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+
+
+    KafkaPojoDataGenerator  kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets25cols",
+      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
     try {
-      kafkaPojoDataGenerator.generateTestDataSet(3, FiftyColsPojo.class, 30,8,10);
+      kafkaPojoDataGenerator.generateTestDataSet(3,TwentyFiveColsPojo.class, 12,3,8);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("fiftycolpojos6tablets",
-      "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
-    try {
-      kafkaPojoDataGenerator.generateTestDataSet(6,FiftyColsPojo.class, 30,8,10);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("fiftycolpojos12tablets",
-      "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
-    try {
-      kafkaPojoDataGenerator.generateTestDataSet(12,FiftyColsPojo.class, 30,8,10);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
 
 
-    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("twentyfivecolpojos3tablets",
-      "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
-    try {
-      kafkaPojoDataGenerator.generateTestDataSet(3,TwentyFiftyColsPojo.class, 12,3,8);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-
-    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("hundredcolpojos3tablets",
-      "192.168.1.204:9092,192.168.1.140:9092,192.168.1.209:9092");
+    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets100cols",
+      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
     try {
       kafkaPojoDataGenerator.generateTestDataSet(3,HundredColsPojo.class, 60,18,20);
     } catch (IOException e) {

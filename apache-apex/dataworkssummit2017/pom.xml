@@ -260,7 +260,7 @@
   <dependency>
     <groupId>org.apache.kudu</groupId>
     <artifactId>kudu-client</artifactId>
-    <version>1.3.1</version>
+    <version>1.4.0</version>
   </dependency>
   <dependency>
     <groupId>org.apache.apex</groupId>
@@ -275,7 +275,7 @@
   <dependency>
     <groupId>org.apache.kafka</groupId>
     <artifactId>kafka-clients</artifactId>
-    <version>0.9.0.0</version>
+    <version>0.10.0.0</version>
   </dependency>
   <dependency>
     <groupId>org.codehaus.janino</groupId>

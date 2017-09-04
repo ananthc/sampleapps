@@ -1,34 +1,10 @@
 package com.github.ananthc.dataworkssummit.pojos;
 
 
-public class HundredColsPojo
+public class HundredColsPojo  extends BasePojo
 {
 
-  private int intRowKey;
-  
-  private long timestampRowKey;
-
-
-  public int getIntRowKey()
-  {
-    return intRowKey;
-  }
-
-  public void setIntRowKey(int intRowKey)
-  {
-    this.intRowKey = intRowKey;
-  }
-
-  public long getTimestampRowKey()
-  {
-    return timestampRowKey;
-  }
-
-  public void setTimestampRowKey(long timestampRowKey)
-  {
-    this.timestampRowKey = timestampRowKey;
-  }
-	private int int0;
+  private int int0;
 	private int int1;
 	private int int2;
 	private int int3;

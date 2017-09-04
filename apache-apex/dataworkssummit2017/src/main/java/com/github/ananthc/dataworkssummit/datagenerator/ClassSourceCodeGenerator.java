@@ -117,7 +117,7 @@ public class ClassSourceCodeGenerator
 
   public void generate25ColPojo() throws Exception
   {
-    String fileAndClassName = "TwentyFiftyColsPojo";
+    String fileAndClassName = "TwentyFiveColsPojo";
     int numIntCols = 12;
     int numFloatCols = 3;
     int numStringCols = 8;
