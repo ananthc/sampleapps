@@ -22,60 +22,69 @@ import org.apache.kudu.client.CreateTableOptions;
 import org.apache.kudu.client.KuduClient;
 import org.apache.kudu.client.KuduException;
 import org.apache.kudu.client.PartialRow;
-import org.apache.zookeeper.Op;
 
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.StreamingApplication;
-import com.datatorrent.api.annotation.ApplicationAnnotation;
+import com.datatorrent.netlet.util.DTThrowable;
 
-@ApplicationAnnotation(name="KafkaToKuduSyncApp")
-public class KafkaToKuduOutputApplication implements StreamingApplication
+public abstract class BaseKafkaToKuduOutputApplication<T> implements StreamingApplication
 {
 
-  private static final transient Logger LOG = LoggerFactory.getLogger(KafkaToKuduOutputApplication.class);
+  private static final transient Logger LOG = LoggerFactory.getLogger(BaseKafkaToKuduOutputApplication.class);
+
+  public abstract void ensureTablePresent()  throws Exception;
+
+  public abstract void setKafkaTopic(KafkaStreamInputOperator kafkaInput)  throws Exception;
 
   @Override
   public void populateDAG(DAG dag, Configuration conf)
   {
-    //ensureTablesPresent();
-    KafkaStreamInputOperator kafkaInput = new KafkaStreamInputOperator();
-    Properties props = new Properties();
-    props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
-    //kafkaInput.setClusters();
-    //kafkaInput.setTopics();
-    kafkaInput.setConsumerProps(props);
-    kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
-    kafkaInput.setStrategy(PartitionStrategy.ONE_TO_MANY.name());
-    BaseKuduOutputOperator tableKuduOutputOperator = null;
-//    try {
-//      tableKuduOutputOperator = new BaseKuduOutputOperator(asa);
-//    } catch (IOException| ClassNotFoundException e) {
-//      throw new RuntimeException(e);
-//    }
-    dag.addOperator("kafkaInput",kafkaInput);
-    dag.addOperator("tableOutput",tableKuduOutputOperator);
-    dag.addStream("kafka2tableoutput",kafkaInput.outputFor25ColTransactionWrites, tableKuduOutputOperator.input);
+    try {
+      ensureTablePresent();
+      KafkaStreamInputOperator<T> kafkaInput = getKafkaInputOperatorInstance();
+      Properties props = new Properties();
+      props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
+      kafkaInput.setClusters("192.168.1.39:9092");
+      setKafkaTopic(kafkaInput);
+      kafkaInput.setConsumerProps(props);
+      kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
+      kafkaInput.setStrategy(PartitionStrategy.ONE_TO_MANY.name());
+      BaseKuduOutputOperator tableKuduOutputOperator = null;
+      try {
+        tableKuduOutputOperator = new BaseKuduOutputOperator(getPropertyFileName());
+      } catch (IOException | ClassNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+      dag.addOperator("kafkaInput",kafkaInput);
+      dag.addOperator("tableOutput",tableKuduOutputOperator);
+      dag.addStream("kafka2tableoutput",kafkaInput.outputForWrites, tableKuduOutputOperator.input);
+    } catch (Exception ex) {
+      DTThrowable.rethrow(ex);
+    }
 
   }
+
+  protected abstract KafkaStreamInputOperator<T> getKafkaInputOperatorInstance();
+
+  protected abstract String getPropertyFileName();
 
   private KuduClient getClientHandle() throws Exception
   {
-//    KuduClient.KuduClientBuilder builder = new KuduClient.KuduClientBuilder();
-//    KuduClient client = builder.build();
-//    return client;
-    return null;
+    KuduClient.KuduClientBuilder builder = new KuduClient.KuduClientBuilder("192.168.1.41:7051");
+    KuduClient client = builder.build();
+    return client;
   }
 
-  public void ensureTablesPresent(String tableName)
+  public void ensureTablePresent(String tableName,int numRanges, int numIntCols, int numFloatCols,
+    int numStrCols) throws Exception
   {
     try {
       KuduClient kuduClient = getClientHandle();
       if (kuduClient.tableExists(tableName)) {
         kuduClient.deleteTable(tableName);
       }
-      //createTable(tableName,kuduClient);
+      createTable(tableName,kuduClient,numRanges,numIntCols,numFloatCols,numStrCols);
       kuduClient.shutdown();
-
     } catch (Exception ex) {
       throw new RuntimeException(ex);
     }

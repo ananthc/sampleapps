@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import org.apache.apex.malhar.kafka.AbstractKafkaInputOperator;
 import org.apache.apex.malhar.kudu.KuduExecutionContext;
+import org.apache.apex.malhar.kudu.KuduMutationType;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,18 +22,18 @@ import com.datatorrent.api.DefaultOutputPort;
 /**
  * This is a simple operator that formats the incoming message that is compatible with Kudu execution context
  */
-public class KafkaStreamInputOperator extends AbstractKafkaInputOperator
+public class KafkaStreamInputOperator<T> extends AbstractKafkaInputOperator
 {
 
-  public final transient DefaultOutputPort<KuduExecutionContext<FiftyColsPojo>> outputFor50ColTransactionWrites =
+  Class<T> clazz;
+
+  public final transient DefaultOutputPort<KuduExecutionContext<T>> outputForWrites =
     new DefaultOutputPort<>();
 
-  public final transient DefaultOutputPort<KuduExecutionContext<FiftyColsPojo>> outputFor25ColTransactionWrites =
-    new DefaultOutputPort<>();
-
-  public final transient DefaultOutputPort<KuduExecutionContext<FiftyColsPojo>> outputFor100ColTransactionWrites =
-    new DefaultOutputPort<>();
-
+  public KafkaStreamInputOperator(Class clazz)
+  {
+    this.clazz = clazz;
+  }
 
   private static final transient Logger LOG = LoggerFactory.getLogger(KafkaStreamInputOperator.class);
 
@@ -48,15 +49,19 @@ public class KafkaStreamInputOperator extends AbstractKafkaInputOperator
   @Override
   protected void emitTuple(String clusterName, ConsumerRecord<byte[], byte[]> consumerRecord)
   {
-    FiftyColsPojo payload = null;
+    T payload = null;
     try {
-      payload = objectMapper.readValue(consumerRecord.value(),FiftyColsPojo.class);
+      payload = objectMapper.readValue(consumerRecord.value(),clazz);
     } catch (IOException e) {
       LOG.error(e.getMessage());
     }
     if (payload == null) {
       return;
     }
+    KuduExecutionContext<T> executionContext = new KuduExecutionContext<>();
+    executionContext.setPayload(payload);
+    executionContext.setMutationType(KuduMutationType.UPSERT);
+    outputForWrites.emit(executionContext);
   }
 
 
