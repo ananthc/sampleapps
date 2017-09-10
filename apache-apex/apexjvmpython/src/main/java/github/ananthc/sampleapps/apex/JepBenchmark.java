@@ -31,6 +31,13 @@
 
 package github.ananthc.sampleapps.apex;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -81,11 +88,48 @@ public class JepBenchmark
           .setClassLoader(Thread.currentThread().getContextClassLoader()
           );
         jepInstance = new Jep(config);
-        jepInstance.eval("from sklearn.externals import joblib");
-        System.out.println("Status of loaded model ... " + jepInstance.eval("svmmodel = joblib.load('/tmp/svmmodel1')"));
+        jepInstance.eval("import pickle");
+        loadSVMModel();
       } catch (Exception ex) {
         ex.printStackTrace();
       }
+    }
+
+    private void migrateFileFromResourcesFolderToTemp(String resourceFileName,String targetFilePath) throws Exception
+    {
+      ClassLoader classLoader = getClass().getClassLoader();
+      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+        classLoader.getResourceAsStream(resourceFileName)));
+      File outFile = new File(targetFilePath);
+      if (outFile.exists()) {
+        outFile.delete();
+      }
+      outFile.createNewFile();
+      FileWriter filewriter = new FileWriter(outFile.getAbsoluteFile());
+      BufferedWriter outputStream= new BufferedWriter(filewriter);
+      String lineRead;
+      int counter = 0;
+      while ((lineRead = bufferedReader.readLine()) != null) {
+        if ( counter > 0 ) {
+          outputStream.newLine();
+        }
+        outputStream.write(lineRead);
+        counter += 1;
+      }
+      outputStream.flush();
+      outputStream.close();
+      bufferedReader.close();
+
+    }
+
+    private void loadSVMModel() throws Exception
+    {
+      String modelPath = "/tmp/svmmodel1";
+      String resourceFileName = "svmmodeliris.pckl";
+      migrateFileFromResourcesFolderToTemp(resourceFileName,modelPath);
+      jepInstance.eval("fileHandle = open('" + modelPath+"')");
+      System.out.println("Status of loaded model ... " + jepInstance.eval("svmmodel = pickle.load(fileHandle)"));
+      jepInstance.eval("fileHandle.close()");
     }
 
     @TearDown(Level.Trial)
