@@ -35,6 +35,10 @@ public class KafkaStreamInputOperator<T> extends AbstractKafkaInputOperator
     this.clazz = clazz;
   }
 
+  public KafkaStreamInputOperator()
+  {
+  }
+
   private static final transient Logger LOG = LoggerFactory.getLogger(KafkaStreamInputOperator.class);
 
   private ObjectMapper objectMapper = null;
@@ -56,6 +60,7 @@ public class KafkaStreamInputOperator<T> extends AbstractKafkaInputOperator
       LOG.error(e.getMessage());
     }
     if (payload == null) {
+      LOG.error("Null payload");
       return;
     }
     KuduExecutionContext<T> executionContext = new KuduExecutionContext<>();

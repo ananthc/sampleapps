@@ -14,6 +14,10 @@ public class Kudu3Tablets50ColInputOperator extends AbstractKuduInputOperator<Fi
 {
   int iterationCounter = 1;
 
+  public Kudu3Tablets50ColInputOperator()
+  {
+  }
+
   public Kudu3Tablets50ColInputOperator(ApexKuduConnection.ApexKuduConnectionBuilder kuduConnectionInfo,
      Class<FiftyColsPojo> clazzForPOJO) throws Exception
   {
@@ -23,6 +27,7 @@ public class Kudu3Tablets50ColInputOperator extends AbstractKuduInputOperator<Fi
   @Override
   protected String getNextQuery()
   {
+    System.out.println("Executing next query");
     return "select * from FiftyCols3Tablets using options CONTROLTUPLE_MESSAGE = 'end of iteration" +
       iterationCounter++ + "'";
   }

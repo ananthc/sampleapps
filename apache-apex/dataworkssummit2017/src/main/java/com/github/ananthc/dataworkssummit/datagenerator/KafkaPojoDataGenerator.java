@@ -119,13 +119,13 @@ public class KafkaPojoDataGenerator
 
   public static void main(String[] args) throws InterruptedException, InstantiationException, IllegalAccessException
   {
-//    KafkaPojoDataGenerator kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets50cols",
-//      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
-//    try {
-//      kafkaPojoDataGenerator.generateTestDataSet(3, FiftyColsPojo.class, 30,8,10);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
+    KafkaPojoDataGenerator kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets50cols",
+      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
+    try {
+      kafkaPojoDataGenerator.generateTestDataSet(3, FiftyColsPojo.class, 30,8,10);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 //    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu6tablets50cols",
 //      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
 //    try {
@@ -143,22 +143,22 @@ public class KafkaPojoDataGenerator
 //    }
 
 
-    KafkaPojoDataGenerator  kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets25cols",
-      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
-    try {
-      kafkaPojoDataGenerator.generateTestDataSet(3,TwentyFiveColsPojo.class, 12,3,8);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-
-    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets100cols",
-      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
-    try {
-      kafkaPojoDataGenerator.generateTestDataSet(3,HundredColsPojo.class, 60,18,20);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+//    KafkaPojoDataGenerator  kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets25cols",
+//      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
+//    try {
+//      kafkaPojoDataGenerator.generateTestDataSet(3,TwentyFiveColsPojo.class, 12,3,8);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//
+//
+//    kafkaPojoDataGenerator = new KafkaPojoDataGenerator("kudu3tablets100cols",
+//      "192.168.1.39:9092,192.168.1.230:9092,192.168.1.209:9092");
+//    try {
+//      kafkaPojoDataGenerator.generateTestDataSet(3,HundredColsPojo.class, 60,18,20);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
   }
 
 }

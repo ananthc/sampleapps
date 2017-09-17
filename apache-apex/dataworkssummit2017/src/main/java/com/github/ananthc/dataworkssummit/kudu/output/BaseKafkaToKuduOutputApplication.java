@@ -47,8 +47,8 @@ public abstract class BaseKafkaToKuduOutputApplication<T> implements StreamingAp
       kafkaInput.setClusters("192.168.1.39:9092");
       setKafkaTopic(kafkaInput);
       kafkaInput.setConsumerProps(props);
-      kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
-      kafkaInput.setStrategy(PartitionStrategy.ONE_TO_MANY.name());
+      kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.LATEST.name());
+      kafkaInput.setStrategy(PartitionStrategy.ONE_TO_ONE.name());
       BaseKuduOutputOperator tableKuduOutputOperator = null;
       try {
         tableKuduOutputOperator = new BaseKuduOutputOperator(getPropertyFileName());
@@ -95,15 +95,20 @@ public abstract class BaseKafkaToKuduOutputApplication<T> implements StreamingAp
   {
 
     List<ColumnSchema> columnsForTable = new ArrayList<>();
-    ColumnSchema deviceIdCol = new ColumnSchema.ColumnSchemaBuilder("intRowKey", Type.INT32)
+    ColumnSchema intRowKeyCol = new ColumnSchema.ColumnSchemaBuilder("intRowKey", Type.INT32)
       .key(true)
       .build();
-    columnsForTable.add(deviceIdCol);
+    columnsForTable.add(intRowKeyCol);
     ColumnSchema timestampCol = new ColumnSchema.ColumnSchemaBuilder("timestampRowKey", Type.INT64)
       .key(true)
       .build();
     columnsForTable.add(timestampCol);
-
+    /*
+    ColumnSchema intKeyCol = new ColumnSchema.ColumnSchemaBuilder("int0", Type.INT32)
+      .key(true)
+      .build();
+    columnsForTable.add(intKeyCol);
+    */
     for ( int i=0; i < numIntCols; i++) {
       ColumnSchema intCol = new ColumnSchema.ColumnSchemaBuilder(("int"+i), Type.INT32)
         .key(false)
@@ -129,14 +134,14 @@ public abstract class BaseKafkaToKuduOutputApplication<T> implements StreamingAp
     rangeKeys.add("intRowKey");
     List<String> hashPartitions = new ArrayList<>();
     hashPartitions.add("timestampRowKey");
-
+    //hashPartitions.add("int0");
     Schema schemaForTable = new Schema(columnsForTable);
     int stepsize = Integer.MAX_VALUE / numRanges;
     int splitBoundary = stepsize;
     CreateTableOptions createTableOptions = new CreateTableOptions()
       .setNumReplicas(3)
       .setRangePartitionColumns(rangeKeys)
-      .addHashPartitions(hashPartitions,1);
+      .addHashPartitions(hashPartitions,2);
     for ( int i = 0; i < numRanges; i++) {
       PartialRow splitRowBoundary = schemaForTable.newPartialRow();
       splitRowBoundary.addInt("intRowKey",splitBoundary);
