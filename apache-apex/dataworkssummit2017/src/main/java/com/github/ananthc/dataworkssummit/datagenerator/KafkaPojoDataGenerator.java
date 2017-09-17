@@ -28,9 +28,6 @@ public class KafkaPojoDataGenerator
 
   private static final Random random = new Random();
 
-  private Map<Integer,FiftyColsPojo> lookupOfRecords = new HashMap<>();
-
-
   public KafkaPojoDataGenerator(String topic, String hosts)
   {
     Properties props = new Properties();

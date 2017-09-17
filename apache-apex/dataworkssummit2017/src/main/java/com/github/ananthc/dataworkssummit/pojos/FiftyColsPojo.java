@@ -598,4 +598,58 @@ public class FiftyColsPojo  extends BasePojo
 		this.str9 = str9;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "FiftyColsPojo{" +
+			"int0=" + int0 +
+			", int1=" + int1 +
+			", int2=" + int2 +
+			", int3=" + int3 +
+			", int4=" + int4 +
+			", int5=" + int5 +
+			", int6=" + int6 +
+			", int7=" + int7 +
+			", int8=" + int8 +
+			", int9=" + int9 +
+			", int10=" + int10 +
+			", int11=" + int11 +
+			", int12=" + int12 +
+			", int13=" + int13 +
+			", int14=" + int14 +
+			", int15=" + int15 +
+			", int16=" + int16 +
+			", int17=" + int17 +
+			", int18=" + int18 +
+			", int19=" + int19 +
+			", int20=" + int20 +
+			", int21=" + int21 +
+			", int22=" + int22 +
+			", int23=" + int23 +
+			", int24=" + int24 +
+			", int25=" + int25 +
+			", int26=" + int26 +
+			", int27=" + int27 +
+			", int28=" + int28 +
+			", int29=" + int29 +
+			", float0=" + float0 +
+			", float1=" + float1 +
+			", float2=" + float2 +
+			", float3=" + float3 +
+			", float4=" + float4 +
+			", float5=" + float5 +
+			", float6=" + float6 +
+			", float7=" + float7 +
+			", str0='" + str0 + '\'' +
+			", str1='" + str1 + '\'' +
+			", str2='" + str2 + '\'' +
+			", str3='" + str3 + '\'' +
+			", str4='" + str4 + '\'' +
+			", str5='" + str5 + '\'' +
+			", str6='" + str6 + '\'' +
+			", str7='" + str7 + '\'' +
+			", str8='" + str8 + '\'' +
+			", str9='" + str9 + '\'' +
+			'}';
+	}
 }

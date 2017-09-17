@@ -291,4 +291,33 @@ public class TwentyFiveColsPojo extends BasePojo
 		this.str7 = str7;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "TwentyFiveColsPojo{" +
+			"int0=" + int0 +
+			", int1=" + int1 +
+			", int2=" + int2 +
+			", int3=" + int3 +
+			", int4=" + int4 +
+			", int5=" + int5 +
+			", int6=" + int6 +
+			", int7=" + int7 +
+			", int8=" + int8 +
+			", int9=" + int9 +
+			", int10=" + int10 +
+			", int11=" + int11 +
+			", float0=" + float0 +
+			", float1=" + float1 +
+			", float2=" + float2 +
+			", str0='" + str0 + '\'' +
+			", str1='" + str1 + '\'' +
+			", str2='" + str2 + '\'' +
+			", str3='" + str3 + '\'' +
+			", str4='" + str4 + '\'' +
+			", str5='" + str5 + '\'' +
+			", str6='" + str6 + '\'' +
+			", str7='" + str7 + '\'' +
+			'}';
+	}
 }
