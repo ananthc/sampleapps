@@ -43,11 +43,11 @@ public abstract class BaseKafkaToKuduOutputApplication<T> implements StreamingAp
       ensureTablePresent();
       KafkaStreamInputOperator<T> kafkaInput = getKafkaInputOperatorInstance();
       Properties props = new Properties();
-      props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
+      //props.put("client.id","KuduoutputApexApp-"+System.currentTimeMillis());
       kafkaInput.setClusters("192.168.1.39:9092");
       setKafkaTopic(kafkaInput);
       kafkaInput.setConsumerProps(props);
-      kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.LATEST.name());
+      kafkaInput.setInitialOffset(AbstractKafkaInputOperator.InitialOffset.EARLIEST.name());
       kafkaInput.setStrategy(PartitionStrategy.ONE_TO_ONE.name());
       BaseKuduOutputOperator tableKuduOutputOperator = null;
       try {

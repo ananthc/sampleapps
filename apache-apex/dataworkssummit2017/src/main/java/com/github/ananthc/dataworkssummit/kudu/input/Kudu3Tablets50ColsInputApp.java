@@ -44,7 +44,6 @@ public class Kudu3Tablets50ColsInputApp extends BaseKuduInputApp
     KafkaSinglePortOutputOperator<String,FiftyColsPojo> kafkaOutput = new KafkaSinglePortOutputOperator<>();
     kafkaOutput.setTopic("allcolumnDump");
     Properties props = new Properties();
-    props.put("client.id","KuduinputApexApp-"+System.currentTimeMillis());
     props.put("serializer.class","kafka.serializer.StringEncoder");
     props.put("metadata.broker.list","192.168.1.39:9092");
     props.put("producer.type","async");

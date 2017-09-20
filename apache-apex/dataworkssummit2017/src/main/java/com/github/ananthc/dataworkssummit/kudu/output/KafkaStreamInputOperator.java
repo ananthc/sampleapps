@@ -37,6 +37,7 @@ public class KafkaStreamInputOperator<T> extends AbstractKafkaInputOperator
 
   public KafkaStreamInputOperator()
   {
+    System.out.println("Null constructor called");
   }
 
   private static final transient Logger LOG = LoggerFactory.getLogger(KafkaStreamInputOperator.class);

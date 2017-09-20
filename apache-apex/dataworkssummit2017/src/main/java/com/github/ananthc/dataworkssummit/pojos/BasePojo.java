@@ -9,6 +9,9 @@ public class BasePojo
 
   private long timestampRowKey;
 
+  public BasePojo()
+  {
+  }
 
   public int getIntRowKey()
   {
