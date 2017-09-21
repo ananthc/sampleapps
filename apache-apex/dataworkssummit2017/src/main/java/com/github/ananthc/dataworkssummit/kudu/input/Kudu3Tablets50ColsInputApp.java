@@ -12,10 +12,12 @@ import com.github.ananthc.dataworkssummit.pojos.FiftyColsPojo;
 
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.LocalMode;
+import com.datatorrent.api.annotation.ApplicationAnnotation;
 
 /**
  * Created by Ananth on 17/9/17.
  */
+@ApplicationAnnotation(name = "Kudu3Tablets50ColsInputApp")
 public class Kudu3Tablets50ColsInputApp extends BaseKuduInputApp
 {
   @Override
@@ -46,6 +48,7 @@ public class Kudu3Tablets50ColsInputApp extends BaseKuduInputApp
     Properties props = new Properties();
     props.put("serializer.class","kafka.serializer.StringEncoder");
     props.put("metadata.broker.list","192.168.1.39:9092");
+    props.put("bootstrap.servers","192.168.1.39:9092");
     props.put("producer.type","async");
     kafkaOutput.setProperties(props);
     return kafkaOutput;
