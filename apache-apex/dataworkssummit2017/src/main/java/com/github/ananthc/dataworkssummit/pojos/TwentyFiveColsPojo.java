@@ -1,7 +1,7 @@
 package com.github.ananthc.dataworkssummit.pojos;
 
 
-public class TwentyFiveColsPojo extends BasePojo
+public class TwentyFiveColsPojo
 {
 
 	public TwentyFiveColsPojo()
@@ -46,25 +46,21 @@ public class TwentyFiveColsPojo extends BasePojo
 
 	private String str7;
 
-	@Override
 	public int getIntRowKey()
 	{
 		return intRowKey;
 	}
 
-	@Override
 	public void setIntRowKey(int intRowKey)
 	{
 		this.intRowKey = intRowKey;
 	}
 
-	@Override
 	public long getTimestampRowKey()
 	{
 		return timestampRowKey;
 	}
 
-	@Override
 	public void setTimestampRowKey(long timestampRowKey)
 	{
 		this.timestampRowKey = timestampRowKey;
@@ -323,6 +319,7 @@ public class TwentyFiveColsPojo extends BasePojo
 		this.str7 = str7;
 	}
 
+	/*
 	@Override
 	public String toString()
 	{
@@ -351,5 +348,5 @@ public class TwentyFiveColsPojo extends BasePojo
 			", str6='" + str6 + '\'' +
 			", str7='" + str7 + '\'' +
 			'}';
-	}
+	}*/
 }

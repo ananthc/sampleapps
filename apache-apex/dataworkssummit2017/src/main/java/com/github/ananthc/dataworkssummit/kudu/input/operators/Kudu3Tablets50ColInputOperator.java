@@ -28,8 +28,8 @@ public class Kudu3Tablets50ColInputOperator extends AbstractKuduInputOperator<Fi
   protected String getNextQuery()
   {
     System.out.println("Executing next query");
-    return "select * from FiftyCols3Tablets using options CONTROLTUPLE_MESSAGE = 'end of iteration" +
-      iterationCounter++ + "'";
+    return "select * from FiftyCols3Tablets using options CONTROLTUPLE_MESSAGE = \"end of iteration " +
+      iterationCounter++ + "\"";
   }
 
   @Override

@@ -71,33 +71,57 @@ public class KafkaPojoDataGenerator
     }
     ObjectMapper mapper = new ObjectMapper();
     for (int i=0; i < NUM_MESSAGES; i++) {
-      BasePojo aPayload = null;
       if (clazzHandle.getName().endsWith("FiftyColsPojo")) {
-        aPayload = new FiftyColsPojo();
+        FiftyColsPojo aPayload = new FiftyColsPojo();
+        for(String colName : settersMap.keySet()) {
+          if ( colName.startsWith("int")) {
+            ((PojoUtils.SetterInt)settersMap.get(colName)).set(aPayload,random.nextInt());
+          }
+          if ( colName.startsWith("float")) {
+            ((PojoUtils.SetterFloat)settersMap.get(colName)).set(aPayload,random.nextInt());
+          }
+          if ( colName.startsWith("str")) {
+            ((PojoUtils.Setter)settersMap.get(colName)).set(aPayload,""+System.currentTimeMillis());
+          }
+        }
+        aPayload.setTimestampRowKey(System.currentTimeMillis());
+        aPayload.setIntRowKey(numRangeBoundaries[ i % numRangeBoundaries.length ] + i);
+        writeMessage(i, mapper.writeValueAsString(aPayload));
       }
       if (clazzHandle.getName().endsWith("TwentyFiveColsPojo")) {
-        aPayload = new TwentyFiveColsPojo();
+        TwentyFiveColsPojo aPayload = new TwentyFiveColsPojo();
+        for(String colName : settersMap.keySet()) {
+          if ( colName.startsWith("int")) {
+            ((PojoUtils.SetterInt)settersMap.get(colName)).set(aPayload,random.nextInt());
+          }
+          if ( colName.startsWith("float")) {
+            ((PojoUtils.SetterFloat)settersMap.get(colName)).set(aPayload,random.nextInt());
+          }
+          if ( colName.startsWith("str")) {
+            ((PojoUtils.Setter)settersMap.get(colName)).set(aPayload,""+System.currentTimeMillis());
+          }
+        }
+        aPayload.setTimestampRowKey(System.currentTimeMillis());
+        aPayload.setIntRowKey(numRangeBoundaries[ i % numRangeBoundaries.length ] + i);
+        writeMessage(i, mapper.writeValueAsString(aPayload));
       }
       if (clazzHandle.getName().endsWith("HundredColsPojo")) {
-        aPayload = new HundredColsPojo();
-      }
-      if ( aPayload == null) {
-        throw new InstantiationException("Class instantiation is not supported inside data generator");
-      }
-      for(String colName : settersMap.keySet()) {
-        if ( colName.startsWith("int")) {
-          ((PojoUtils.SetterInt)settersMap.get(colName)).set(aPayload,random.nextInt());
+        HundredColsPojo aPayload = new HundredColsPojo();
+        for(String colName : settersMap.keySet()) {
+          if ( colName.startsWith("int")) {
+            ((PojoUtils.SetterInt)settersMap.get(colName)).set(aPayload,random.nextInt());
+          }
+          if ( colName.startsWith("float")) {
+            ((PojoUtils.SetterFloat)settersMap.get(colName)).set(aPayload,random.nextInt());
+          }
+          if ( colName.startsWith("str")) {
+            ((PojoUtils.Setter)settersMap.get(colName)).set(aPayload,""+System.currentTimeMillis());
+          }
         }
-        if ( colName.startsWith("float")) {
-          ((PojoUtils.SetterFloat)settersMap.get(colName)).set(aPayload,random.nextInt());
-        }
-        if ( colName.startsWith("str")) {
-          ((PojoUtils.Setter)settersMap.get(colName)).set(aPayload,""+System.currentTimeMillis());
-        }
+        aPayload.setTimestampRowKey(System.currentTimeMillis());
+        aPayload.setIntRowKey(numRangeBoundaries[ i % numRangeBoundaries.length ] + i);
+        writeMessage(i, mapper.writeValueAsString(aPayload));
       }
-      aPayload.setTimestampRowKey(System.currentTimeMillis());
-      aPayload.setIntRowKey(numRangeBoundaries[ i % numRangeBoundaries.length ] + i);
-      writeMessage(i, mapper.writeValueAsString(aPayload));
     }
   }
 
