@@ -42,12 +42,6 @@ THE POSSIBILITY OF SUCH DAMAGE.
     <packaging>jar</packaging>
 
     <name>JMH benchmark sample: Java</name>
-
-    <!--
-       This is the demo/sample template build script for building Java benchmarks with JMH.
-       Edit as needed.
-    -->
-
     <dependencies>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
@@ -61,8 +55,8 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.ninia.jep</groupId>
-            <artifactId>jep-java-dependencies</artifactId>
+            <groupId>black.ninia</groupId>
+            <artifactId>jep</artifactId>
             <version>3.7.0</version>
         </dependency>
     </dependencies>

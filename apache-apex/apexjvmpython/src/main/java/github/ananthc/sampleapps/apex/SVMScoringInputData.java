@@ -23,7 +23,8 @@ public class SVMScoringInputData
   @Setup(Level.Invocation)
   public void setUpDataForInput()
   {
-    float[] f = new float[] { random.nextFloat(), random.nextFloat(), random.nextFloat(), random.nextFloat()  };
+    float[] f = new float[] { random.nextFloat()*10 , random.nextFloat()*10, random.nextFloat()*10,
+        random.nextFloat()*10  };
     nd = new NDArray<>(f, 1, 4);
   }
 

@@ -64,9 +64,9 @@ public class JepBenchmark
     public void testSVMPredictWithConstantParams(JepHandle jepHandle, Blackhole sink, SVMScoringInputData input)
         throws Exception {
       jepHandle.getJepInstance().set("input",input.getNd());
-      //jepHandle.jepInstance.eval("res = svmmodel.predict([[4., 4., 6.,8.]])");
       jepHandle.jepInstance.eval("res = svmmodel.predict(input)");
-      Object respnseValue = jepHandle.jepInstance.getValue("res");
+      jep.NDArray respnseValue = (jep.NDArray) jepHandle.jepInstance.getValue("res");
+      System.out.println("res=" + ((long[]) respnseValue.getData())[0]);
       sink.consume(respnseValue);
     }
 
