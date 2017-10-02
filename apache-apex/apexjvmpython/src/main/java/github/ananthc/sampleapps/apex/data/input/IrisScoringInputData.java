@@ -1,4 +1,4 @@
-package github.ananthc.sampleapps.apex;
+package github.ananthc.sampleapps.apex.data.input;
 
 import java.util.Random;
 
@@ -13,7 +13,7 @@ import jep.NDArray;
  * Created by Ananth on 29/8/17.
  */
 @State(Scope.Thread)
-public class SVMScoringInputData
+public class IrisScoringInputData
 {
 
   public static Random random = new Random();
