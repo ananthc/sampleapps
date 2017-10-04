@@ -41,26 +41,26 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.infra.Blackhole;
 
+import github.ananthc.sampleapps.apex.JepHandle;
+import github.ananthc.sampleapps.apex.data.input.IrisScoringInputData;
+
 @State(Scope.Benchmark)
 public class ScikitLearnSVMJepBenchmark
 {
 
-/*
-  @Benchmark @BenchmarkMode(Mode.All) @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @Benchmark
+  @BenchmarkMode(Mode.AverageTime)
+  @OutputTimeUnit(TimeUnit.MICROSECONDS)
   public void testSVMIrisPredict(JepHandle jepHandle, Blackhole sink, IrisScoringInputData input)
-      throws Exception {
-    jepHandle.getJepInstance().set("input",input.getNd());
+    throws Exception
+  {
+    jepHandle.getJepInstance().set("input", input.getNd());
     jepHandle.jepInstance.eval("res = svmmodel.predict(input)");
-    jep.NDArray respnseValue = (jep.NDArray) jepHandle.jepInstance.getValue("res");
+    jep.NDArray respnseValue = (jep.NDArray)jepHandle.jepInstance.getValue("res");
     //System.out.println("res=" + ((long[]) respnseValue.getData())[0]);
-    System.out.println("Input is " + input.getNd().getData()[0]+ " " + input.getNd().getData()[1]
-      + " " + input.getNd().getData()[2] + " " + input.getNd().getData()[3]);
+//    System.out.println("Input is " + input.getNd().getData()[0] + " " + input.getNd().getData()[1]
+//      + " " + input.getNd().getData()[2] + " " + input.getNd().getData()[3]);
     sink.consume(respnseValue);
   }
-*/
-
-
-
-
-
 }
+

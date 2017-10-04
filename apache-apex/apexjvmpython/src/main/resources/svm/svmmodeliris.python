@@ -5,4 +5,4 @@ iris = datasets.load_iris()
 X, y = iris.data, iris.target
 clf.fit(X, y)
 import pickle
-pickle.dump(clf,open( "/tmp/svm-iris.pickle", "wb" ))
+pickle.dump(clf,open("/tmp/svm-iris.pickle","wb"),pickle.HIGHEST_PROTOCOL)

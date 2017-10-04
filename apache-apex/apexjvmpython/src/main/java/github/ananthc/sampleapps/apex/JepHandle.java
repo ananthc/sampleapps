@@ -39,7 +39,7 @@ public class JepHandle
       jepInstance.eval("import numpy as np");
       jepInstance.eval("import xgboost as xgb");
       jepInstance.eval("print(platform.python_version())");
-      //loadSVMModel();
+      loadSVMModel();
       loadXGBoostDepth3Model();
       loadXGBoostDepth9Model();
       loadXGBoostDepth27Model();
@@ -60,9 +60,9 @@ public class JepHandle
   private void loadSVMModel() throws Exception
   {
     String modelPath = "/tmp/svmmodel1";
-    String resourceFileName = "svm/svmmodeliris.pckl";
+    String resourceFileName = "svm/svm-iris.pickle";
     migrateFileFromResourcesFolderToTemp(resourceFileName,modelPath);
-    jepInstance.eval("fileHandle = open('" + modelPath+"')");
+    jepInstance.eval("fileHandle = open('" + modelPath+"','rb')");
     System.out.println("Status of loaded model ... " + jepInstance.eval("svmmodel = pickle.load(fileHandle)"));
     jepInstance.eval("fileHandle.close()");
   }
