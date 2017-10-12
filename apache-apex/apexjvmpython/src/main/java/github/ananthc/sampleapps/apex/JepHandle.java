@@ -39,11 +39,17 @@ public class JepHandle
       jepInstance.eval("import numpy as np");
       jepInstance.eval("import xgboost as xgb");
       jepInstance.eval("print(platform.python_version())");
+      jepInstance.eval("import keras");
+      jepInstance.eval("from keras.models import Sequential, import model_from_json");
+      jepInstance.eval("from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D");
+      jepInstance.eval("from keras import backend as K");
+      jepInstance.eval("import h5py");
       loadSVMModel();
       loadXGBoostDepth3Model();
       loadXGBoostDepth9Model();
       loadXGBoostDepth27Model();
       loadXGBoostDepth125Model();
+      loadKerasMNISTModel();
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -102,6 +108,25 @@ public class JepHandle
     migrateFileFromResourcesFolderToTemp(resourceFileName,modelPath);
     jepInstance.eval("booster125 = xgb.Booster()");
     jepInstance.eval("booster125.load_model('" + modelPath + "')");
+  }
+
+
+  private void loadKerasMNISTModel() throws Exception
+  {
+    String h5ModelWeightsPath = "/tmp/keras-minst-model-jep.h5";
+    String jsonModelPath = "/tmp/keras-minst-model-jep.json";
+    String resourceFileNameForModelWeights = "keras/keras-minst-model.h5";
+    String resourceFileNameForModel = "keras/keras-minst-model.json";
+    migrateFileFromResourcesFolderToTemp(resourceFileNameForModelWeights,h5ModelWeightsPath);
+    migrateFileFromResourcesFolderToTemp(resourceFileNameForModel,jsonModelPath);
+    jepInstance.eval("json_file = open(\""+jsonModelPath + "\", 'r')");
+    jepInstance.eval("loaded_model_json = json_file.read()");
+    jepInstance.eval("json_file.close()");
+    jepInstance.eval("loaded_model = model_from_json(loaded_model_json)");
+    jepInstance.eval("loaded_model.load_weights(\"" + h5ModelWeightsPath +"\")");
+    jepInstance.eval("print(\"Loaded model from disk\")");
+    jepInstance.eval("print(\"Loaded model from disk\")");
+    jepInstance.eval("loaded_model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])");
   }
 
 
