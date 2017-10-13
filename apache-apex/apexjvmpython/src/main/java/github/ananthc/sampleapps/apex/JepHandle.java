@@ -35,15 +35,19 @@ public class JepHandle
       jepInstance = new Jep(config);
       jepInstance.eval("import pickle");
       jepInstance.eval("import sys");
+      // BELOW required for tensorflow to work. We have to forcefully set sys.argsv to empty string collection as workaround
+      // see JEP github issue #81
+      jepInstance.eval("sys.argv=[\"\"]");
+      jepInstance.eval("from tensorflow.python.framework import errors");
       jepInstance.eval("import platform");
       jepInstance.eval("import numpy as np");
       jepInstance.eval("import xgboost as xgb");
-      jepInstance.eval("print(platform.python_version())");
       jepInstance.eval("import keras");
-      jepInstance.eval("from keras.models import Sequential, import model_from_json");
+      jepInstance.eval("from keras.models import Sequential, model_from_json");
       jepInstance.eval("from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D");
       jepInstance.eval("from keras import backend as K");
       jepInstance.eval("import h5py");
+      jepInstance.eval("print(platform.python_version())");
       loadSVMModel();
       loadXGBoostDepth3Model();
       loadXGBoostDepth9Model();
@@ -124,7 +128,6 @@ public class JepHandle
     jepInstance.eval("json_file.close()");
     jepInstance.eval("loaded_model = model_from_json(loaded_model_json)");
     jepInstance.eval("loaded_model.load_weights(\"" + h5ModelWeightsPath +"\")");
-    jepInstance.eval("print(\"Loaded model from disk\")");
     jepInstance.eval("print(\"Loaded model from disk\")");
     jepInstance.eval("loaded_model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])");
   }

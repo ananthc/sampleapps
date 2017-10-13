@@ -19,12 +19,17 @@ public class MnistInputData
 
   private NDArray<float[]> nd;
 
+  private static final int DIMENSION_SIZE = 28;
+
   @Setup(Level.Invocation)
   public void setUpDataForInput()
   {
-    float[] f = new float[] { random.nextFloat()*10 , random.nextFloat()*10, random.nextFloat()*10,
-      random.nextFloat()*10  };
-    nd = new NDArray<>(f, 1, 4);
+    float[] f = new float[( DIMENSION_SIZE * DIMENSION_SIZE)];
+    for ( int i=0; i < (DIMENSION_SIZE * DIMENSION_SIZE ); i++)
+    {
+      f[i] = random.nextFloat();
+    };
+    nd = new NDArray<>(f, 1, DIMENSION_SIZE,DIMENSION_SIZE,1);
   }
 
   public NDArray<float[]> getNd()
