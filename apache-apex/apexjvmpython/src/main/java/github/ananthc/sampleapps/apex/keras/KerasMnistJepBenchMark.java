@@ -29,7 +29,11 @@ public class KerasMnistJepBenchMark
     jepHandle.getJepInstance().set("input",input.getNd());
     jepHandle.getJepInstance().eval("res = loaded_model.predict(input)");
     jep.NDArray responseValue = (jep.NDArray) jepHandle.jepInstance.getValue("res");
-    //System.out.println("res=" + ((float[]) responseValue.getData())[0]);
+    float[] responseAsFloatArray = (float[]) responseValue.getData();
+//    System.out.println("res=[" + (responseAsFloatArray[0]) + "," + responseAsFloatArray[1]
+//      + "," + responseAsFloatArray[2] + "," + responseAsFloatArray[3] + "," + responseAsFloatArray[4] + "," +
+//      responseAsFloatArray[5]+ "," + responseAsFloatArray[6]+ "," + responseAsFloatArray[7]+ "," + responseAsFloatArray[8]
+//      + "," + responseAsFloatArray[9]);
   }
 
 }

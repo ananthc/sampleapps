@@ -1,0 +1,683 @@
+# JMH version: 1.19
+# VM version: JDK 1.8.0_121, VM 25.121-b13
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java
+# VM options: -Djava.library.path=/Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+# Warmup: 20 iterations, 1 s each
+# Measurement: 20 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth125.testXGBoostPredictIrisDepth125
+
+# Run progress: 0.00% complete, ETA 00:08:00
+# Fork: 1 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:20:25.477692: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:20:25.477730: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+456.673 us/op
+# Warmup Iteration   2: 467.092 us/op
+# Warmup Iteration   3: 473.370 us/op
+# Warmup Iteration   4: 504.812 us/op
+# Warmup Iteration   5: 447.573 us/op
+# Warmup Iteration   6: 462.464 us/op
+# Warmup Iteration   7: 473.914 us/op
+# Warmup Iteration   8: 465.582 us/op
+# Warmup Iteration   9: 501.545 us/op
+# Warmup Iteration  10: 470.070 us/op
+# Warmup Iteration  11: 460.178 us/op
+# Warmup Iteration  12: 503.380 us/op
+# Warmup Iteration  13: 515.671 us/op
+# Warmup Iteration  14: 509.708 us/op
+# Warmup Iteration  15: 509.109 us/op
+# Warmup Iteration  16: 504.277 us/op
+# Warmup Iteration  17: 496.101 us/op
+# Warmup Iteration  18: 483.647 us/op
+# Warmup Iteration  19: 477.237 us/op
+# Warmup Iteration  20: 498.091 us/op
+Iteration   1: 509.356 us/op
+Iteration   2: 485.944 us/op
+Iteration   3: 559.298 us/op
+Iteration   4: 564.210 us/op
+Iteration   5: 552.258 us/op
+Iteration   6: 530.834 us/op
+Iteration   7: 507.250 us/op
+Iteration   8: 492.679 us/op
+Iteration   9: 500.391 us/op
+Iteration  10: 503.743 us/op
+Iteration  11: 507.871 us/op
+Iteration  12: 496.447 us/op
+Iteration  13: 492.414 us/op
+Iteration  14: 490.479 us/op
+Iteration  15: 502.994 us/op
+Iteration  16: 509.190 us/op
+Iteration  17: 507.109 us/op
+Iteration  18: 506.969 us/op
+Iteration  19: 492.338 us/op
+Iteration  20: 488.432 us/op
+
+# Run progress: 8.33% complete, ETA 00:09:22
+# Fork: 2 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:21:17.136709: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:21:17.136740: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+634.739 us/op
+# Warmup Iteration   2: 537.862 us/op
+# Warmup Iteration   3: 626.192 us/op
+# Warmup Iteration   4: 687.087 us/op
+# Warmup Iteration   5: 573.153 us/op
+# Warmup Iteration   6: 615.471 us/op
+# Warmup Iteration   7: 587.949 us/op
+# Warmup Iteration   8: 540.109 us/op
+# Warmup Iteration   9: 514.704 us/op
+# Warmup Iteration  10: 512.647 us/op
+# Warmup Iteration  11: 506.971 us/op
+# Warmup Iteration  12: 572.025 us/op
+# Warmup Iteration  13: 581.281 us/op
+# Warmup Iteration  14: 546.540 us/op
+# Warmup Iteration  15: 533.688 us/op
+# Warmup Iteration  16: 514.357 us/op
+# Warmup Iteration  17: 513.318 us/op
+# Warmup Iteration  18: 513.715 us/op
+# Warmup Iteration  19: 520.764 us/op
+# Warmup Iteration  20: 529.933 us/op
+Iteration   1: 529.925 us/op
+Iteration   2: 522.276 us/op
+Iteration   3: 530.930 us/op
+Iteration   4: 524.853 us/op
+Iteration   5: 531.337 us/op
+Iteration   6: 530.431 us/op
+Iteration   7: 535.399 us/op
+Iteration   8: 549.415 us/op
+Iteration   9: 539.992 us/op
+Iteration  10: 528.999 us/op
+Iteration  11: 566.401 us/op
+Iteration  12: 532.554 us/op
+Iteration  13: 609.848 us/op
+Iteration  14: 669.064 us/op
+Iteration  15: 627.385 us/op
+Iteration  16: 577.848 us/op
+Iteration  17: 551.732 us/op
+Iteration  18: 549.810 us/op
+Iteration  19: 537.430 us/op
+Iteration  20: Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x13a135cf8>>
+Traceback (most recent call last):
+  File "/usr/local/opt/python3/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 691, in __del__
+NameError: name 'Exception' is not defined
+531.859 us/op
+
+# Run progress: 16.67% complete, ETA 00:08:34
+# Fork: 3 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:22:07.932356: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:22:07.932395: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+495.215 us/op
+# Warmup Iteration   2: 476.427 us/op
+# Warmup Iteration   3: 477.873 us/op
+# Warmup Iteration   4: 509.325 us/op
+# Warmup Iteration   5: 551.391 us/op
+# Warmup Iteration   6: 581.998 us/op
+# Warmup Iteration   7: 599.642 us/op
+# Warmup Iteration   8: 597.171 us/op
+# Warmup Iteration   9: 587.508 us/op
+# Warmup Iteration  10: 582.290 us/op
+# Warmup Iteration  11: 653.583 us/op
+# Warmup Iteration  12: 643.692 us/op
+# Warmup Iteration  13: 601.989 us/op
+# Warmup Iteration  14: 685.173 us/op
+# Warmup Iteration  15: 605.665 us/op
+# Warmup Iteration  16: 577.806 us/op
+# Warmup Iteration  17: 571.956 us/op
+# Warmup Iteration  18: 573.437 us/op
+# Warmup Iteration  19: 560.895 us/op
+# Warmup Iteration  20: 556.879 us/op
+Iteration   1: 589.164 us/op
+Iteration   2: 615.769 us/op
+Iteration   3: 592.076 us/op
+Iteration   4: 591.350 us/op
+Iteration   5: 570.952 us/op
+Iteration   6: 553.676 us/op
+Iteration   7: 567.279 us/op
+Iteration   8: 591.802 us/op
+Iteration   9: 585.538 us/op
+Iteration  10: 563.337 us/op
+Iteration  11: 561.685 us/op
+Iteration  12: 571.949 us/op
+Iteration  13: 582.768 us/op
+Iteration  14: 598.026 us/op
+Iteration  15: 579.256 us/op
+Iteration  16: 578.018 us/op
+Iteration  17: 570.719 us/op
+Iteration  18: 571.907 us/op
+Iteration  19: 570.826 us/op
+Iteration  20: 570.358 us/op
+
+
+Result "github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth125.testXGBoostPredictIrisDepth125":
+  547.569 ±(99.9%) 17.643 us/op [Average]
+  (min, avg, max) = (485.944, 547.569, 669.064), stdev = 39.461
+  CI (99.9%): [529.926, 565.212] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_121, VM 25.121-b13
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java
+# VM options: -Djava.library.path=/Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+# Warmup: 20 iterations, 1 s each
+# Measurement: 20 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth27.testXGBoostPredictIrisDepth27
+
+# Run progress: 25.00% complete, ETA 00:07:41
+# Fork: 1 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:22:59.644120: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:22:59.644158: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+481.500 us/op
+# Warmup Iteration   2: 467.600 us/op
+# Warmup Iteration   3: 473.841 us/op
+# Warmup Iteration   4: 528.863 us/op
+# Warmup Iteration   5: 570.935 us/op
+# Warmup Iteration   6: 600.954 us/op
+# Warmup Iteration   7: 610.814 us/op
+# Warmup Iteration   8: 605.138 us/op
+# Warmup Iteration   9: 596.455 us/op
+# Warmup Iteration  10: 588.044 us/op
+# Warmup Iteration  11: 586.434 us/op
+# Warmup Iteration  12: 536.805 us/op
+# Warmup Iteration  13: 567.872 us/op
+# Warmup Iteration  14: 550.603 us/op
+# Warmup Iteration  15: 555.823 us/op
+# Warmup Iteration  16: 584.139 us/op
+# Warmup Iteration  17: 555.206 us/op
+# Warmup Iteration  18: 586.302 us/op
+# Warmup Iteration  19: 590.174 us/op
+# Warmup Iteration  20: 616.629 us/op
+Iteration   1: 713.779 us/op
+Iteration   2: 724.620 us/op
+Iteration   3: 737.537 us/op
+Iteration   4: 628.547 us/op
+Iteration   5: 672.878 us/op
+Iteration   6: 665.850 us/op
+Iteration   7: 640.769 us/op
+Iteration   8: 619.450 us/op
+Iteration   9: 594.528 us/op
+Iteration  10: 720.320 us/op
+Iteration  11: 610.025 us/op
+Iteration  12: 612.636 us/op
+Iteration  13: 604.357 us/op
+Iteration  14: 587.795 us/op
+Iteration  15: 589.133 us/op
+Iteration  16: 586.451 us/op
+Iteration  17: 578.133 us/op
+Iteration  18: 565.597 us/op
+Iteration  19: 568.389 us/op
+Iteration  20: Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x13a94ee10>>
+Traceback (most recent call last):
+  File "/usr/local/opt/python3/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 691, in __del__
+NameError: name 'Exception' is not defined
+573.882 us/op
+
+# Run progress: 33.33% complete, ETA 00:06:50
+# Fork: 2 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:23:51.323122: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:23:51.323162: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+550.662 us/op
+# Warmup Iteration   2: 527.605 us/op
+# Warmup Iteration   3: 610.772 us/op
+# Warmup Iteration   4: 642.319 us/op
+# Warmup Iteration   5: 654.023 us/op
+# Warmup Iteration   6: 659.398 us/op
+# Warmup Iteration   7: 640.248 us/op
+# Warmup Iteration   8: 625.419 us/op
+# Warmup Iteration   9: 593.464 us/op
+# Warmup Iteration  10: 580.175 us/op
+# Warmup Iteration  11: 578.198 us/op
+# Warmup Iteration  12: 557.575 us/op
+# Warmup Iteration  13: 556.367 us/op
+# Warmup Iteration  14: 556.522 us/op
+# Warmup Iteration  15: 577.654 us/op
+# Warmup Iteration  16: 580.179 us/op
+# Warmup Iteration  17: 573.635 us/op
+# Warmup Iteration  18: 568.563 us/op
+# Warmup Iteration  19: 576.111 us/op
+# Warmup Iteration  20: 578.244 us/op
+Iteration   1: 581.971 us/op
+Iteration   2: 579.174 us/op
+Iteration   3: 566.002 us/op
+Iteration   4: 557.697 us/op
+Iteration   5: 556.505 us/op
+Iteration   6: 555.415 us/op
+Iteration   7: 558.593 us/op
+Iteration   8: 693.280 us/op
+Iteration   9: 581.776 us/op
+Iteration  10: 596.295 us/op
+Iteration  11: 623.773 us/op
+Iteration  12: 591.533 us/op
+Iteration  13: 596.156 us/op
+Iteration  14: 579.874 us/op
+Iteration  15: 578.594 us/op
+Iteration  16: 576.576 us/op
+Iteration  17: 574.512 us/op
+Iteration  18: 680.188 us/op
+Iteration  19: 607.044 us/op
+Iteration  20: Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x13d675d30>>
+Traceback (most recent call last):
+  File "/usr/local/opt/python3/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 691, in __del__
+NameError: name 'Exception' is not defined
+598.688 us/op
+
+# Run progress: 41.67% complete, ETA 00:05:59
+# Fork: 3 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:24:42.390579: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:24:42.390606: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+469.169 us/op
+# Warmup Iteration   2: 462.084 us/op
+# Warmup Iteration   3: 467.340 us/op
+# Warmup Iteration   4: 523.464 us/op
+# Warmup Iteration   5: 571.143 us/op
+# Warmup Iteration   6: 582.015 us/op
+# Warmup Iteration   7: 658.772 us/op
+# Warmup Iteration   8: 643.871 us/op
+# Warmup Iteration   9: 617.558 us/op
+# Warmup Iteration  10: 669.634 us/op
+# Warmup Iteration  11: 712.654 us/op
+# Warmup Iteration  12: 600.057 us/op
+# Warmup Iteration  13: 606.432 us/op
+# Warmup Iteration  14: 604.298 us/op
+# Warmup Iteration  15: 569.319 us/op
+# Warmup Iteration  16: 551.495 us/op
+# Warmup Iteration  17: 540.133 us/op
+# Warmup Iteration  18: 558.368 us/op
+# Warmup Iteration  19: 559.523 us/op
+# Warmup Iteration  20: 558.801 us/op
+Iteration   1: 559.941 us/op
+Iteration   2: 560.896 us/op
+Iteration   3: 560.658 us/op
+Iteration   4: 574.291 us/op
+Iteration   5: 583.116 us/op
+Iteration   6: 564.284 us/op
+Iteration   7: 574.084 us/op
+Iteration   8: 575.504 us/op
+Iteration   9: 571.086 us/op
+Iteration  10: 618.323 us/op
+Iteration  11: 653.609 us/op
+Iteration  12: 641.595 us/op
+Iteration  13: 664.048 us/op
+Iteration  14: 653.238 us/op
+Iteration  15: 629.391 us/op
+Iteration  16: 586.896 us/op
+Iteration  17: 607.782 us/op
+Iteration  18: 615.839 us/op
+Iteration  19: 582.787 us/op
+Iteration  20: 673.499 us/op
+
+
+Result "github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth27.testXGBoostPredictIrisDepth27":
+  607.987 ±(99.9%) 20.997 us/op [Average]
+  (min, avg, max) = (555.415, 607.987, 737.537), stdev = 46.962
+  CI (99.9%): [586.990, 628.983] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_121, VM 25.121-b13
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java
+# VM options: -Djava.library.path=/Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+# Warmup: 20 iterations, 1 s each
+# Measurement: 20 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth3.testXGBoostPredictIrisDepth3
+
+# Run progress: 50.00% complete, ETA 00:05:08
+# Fork: 1 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:25:36.174366: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:25:36.174395: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+484.407 us/op
+# Warmup Iteration   2: 510.251 us/op
+# Warmup Iteration   3: 583.498 us/op
+# Warmup Iteration   4: 640.184 us/op
+# Warmup Iteration   5: 595.293 us/op
+# Warmup Iteration   6: 604.020 us/op
+# Warmup Iteration   7: 629.775 us/op
+# Warmup Iteration   8: 619.320 us/op
+# Warmup Iteration   9: 635.198 us/op
+# Warmup Iteration  10: 599.813 us/op
+# Warmup Iteration  11: 612.502 us/op
+# Warmup Iteration  12: 603.036 us/op
+# Warmup Iteration  13: 588.672 us/op
+# Warmup Iteration  14: 662.082 us/op
+# Warmup Iteration  15: 590.230 us/op
+# Warmup Iteration  16: 674.742 us/op
+# Warmup Iteration  17: 722.344 us/op
+# Warmup Iteration  18: 933.374 us/op
+# Warmup Iteration  19: 789.789 us/op
+# Warmup Iteration  20: 846.921 us/op
+Iteration   1: 882.597 us/op
+Iteration   2: 948.325 us/op
+Iteration   3: 892.503 us/op
+Iteration   4: 868.171 us/op
+Iteration   5: 844.652 us/op
+Iteration   6: 736.587 us/op
+Iteration   7: 742.286 us/op
+Iteration   8: 695.786 us/op
+Iteration   9: 659.330 us/op
+Iteration  10: 645.899 us/op
+Iteration  11: 617.741 us/op
+Iteration  12: 563.776 us/op
+Iteration  13: 571.134 us/op
+Iteration  14: 595.336 us/op
+Iteration  15: 689.147 us/op
+Iteration  16: 945.057 us/op
+Iteration  17: 755.780 us/op
+Iteration  18: 774.482 us/op
+Iteration  19: 813.223 us/op
+Iteration  20: 791.030 us/op
+
+# Run progress: 58.33% complete, ETA 00:04:18
+# Fork: 2 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:26:30.762603: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:26:30.762644: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+475.068 us/op
+# Warmup Iteration   2: 461.542 us/op
+# Warmup Iteration   3: 500.882 us/op
+# Warmup Iteration   4: 560.393 us/op
+# Warmup Iteration   5: 604.155 us/op
+# Warmup Iteration   6: 603.556 us/op
+# Warmup Iteration   7: 603.958 us/op
+# Warmup Iteration   8: 626.591 us/op
+# Warmup Iteration   9: 631.365 us/op
+# Warmup Iteration  10: 630.204 us/op
+# Warmup Iteration  11: 604.877 us/op
+# Warmup Iteration  12: 604.366 us/op
+# Warmup Iteration  13: 594.517 us/op
+# Warmup Iteration  14: 579.354 us/op
+# Warmup Iteration  15: 581.628 us/op
+# Warmup Iteration  16: 578.636 us/op
+# Warmup Iteration  17: 597.567 us/op
+# Warmup Iteration  18: 604.898 us/op
+# Warmup Iteration  19: 602.992 us/op
+# Warmup Iteration  20: 721.733 us/op
+Iteration   1: 608.879 us/op
+Iteration   2: 638.719 us/op
+Iteration   3: 603.418 us/op
+Iteration   4: 644.158 us/op
+Iteration   5: 637.169 us/op
+Iteration   6: 670.026 us/op
+Iteration   7: 638.245 us/op
+Iteration   8: 634.636 us/op
+Iteration   9: 682.897 us/op
+Iteration  10: 696.322 us/op
+Iteration  11: 658.800 us/op
+Iteration  12: 628.115 us/op
+Iteration  13: 610.814 us/op
+Iteration  14: 575.534 us/op
+Iteration  15: 558.337 us/op
+Iteration  16: 555.019 us/op
+Iteration  17: 556.395 us/op
+Iteration  18: 559.645 us/op
+Iteration  19: 576.639 us/op
+Iteration  20: 591.341 us/op
+
+# Run progress: 66.67% complete, ETA 00:03:28
+# Fork: 3 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:27:26.087004: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:27:26.087038: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+677.680 us/op
+# Warmup Iteration   2: 665.328 us/op
+# Warmup Iteration   3: 721.606 us/op
+# Warmup Iteration   4: 680.367 us/op
+# Warmup Iteration   5: 606.684 us/op
+# Warmup Iteration   6: 627.635 us/op
+# Warmup Iteration   7: 616.517 us/op
+# Warmup Iteration   8: 596.813 us/op
+# Warmup Iteration   9: 597.220 us/op
+# Warmup Iteration  10: 588.630 us/op
+# Warmup Iteration  11: 595.087 us/op
+# Warmup Iteration  12: 597.969 us/op
+# Warmup Iteration  13: 598.863 us/op
+# Warmup Iteration  14: 624.208 us/op
+# Warmup Iteration  15: 628.204 us/op
+# Warmup Iteration  16: 614.926 us/op
+# Warmup Iteration  17: 606.051 us/op
+# Warmup Iteration  18: 596.648 us/op
+# Warmup Iteration  19: 584.613 us/op
+# Warmup Iteration  20: 594.757 us/op
+Iteration   1: 594.252 us/op
+Iteration   2: 614.524 us/op
+Iteration   3: 639.758 us/op
+Iteration   4: 656.364 us/op
+Iteration   5: 733.323 us/op
+Iteration   6: 661.880 us/op
+Iteration   7: 718.115 us/op
+Iteration   8: 671.406 us/op
+Iteration   9: 855.250 us/op
+Iteration  10: 847.067 us/op
+Iteration  11: 811.914 us/op
+Iteration  12: 706.051 us/op
+Iteration  13: 692.992 us/op
+Iteration  14: 661.480 us/op
+Iteration  15: 645.367 us/op
+Iteration  16: 654.678 us/op
+Iteration  17: 643.930 us/op
+Iteration  18: 655.662 us/op
+Iteration  19: 631.475 us/op
+Iteration  20: Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x13842bda0>>
+Traceback (most recent call last):
+  File "/usr/local/opt/python3/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 691, in __del__
+NameError: name 'Exception' is not defined
+635.246 us/op
+
+
+Result "github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth3.testXGBoostPredictIrisDepth3":
+  684.811 ±(99.9%) 45.127 us/op [Average]
+  (min, avg, max) = (555.019, 684.811, 948.325), stdev = 100.933
+  CI (99.9%): [639.685, 729.938] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_121, VM 25.121-b13
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java
+# VM options: -Djava.library.path=/Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+# Warmup: 20 iterations, 1 s each
+# Measurement: 20 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth9.testXGBoostPredictIrisDepth9
+
+# Run progress: 75.00% complete, ETA 00:02:37
+# Fork: 1 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:28:18.808275: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:28:18.808311: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+505.653 us/op
+# Warmup Iteration   2: 564.654 us/op
+# Warmup Iteration   3: 776.515 us/op
+# Warmup Iteration   4: 711.935 us/op
+# Warmup Iteration   5: 813.244 us/op
+# Warmup Iteration   6: 868.476 us/op
+# Warmup Iteration   7: 795.320 us/op
+# Warmup Iteration   8: 746.525 us/op
+# Warmup Iteration   9: 739.002 us/op
+# Warmup Iteration  10: 714.661 us/op
+# Warmup Iteration  11: 805.593 us/op
+# Warmup Iteration  12: 651.704 us/op
+# Warmup Iteration  13: 615.362 us/op
+# Warmup Iteration  14: 596.300 us/op
+# Warmup Iteration  15: 608.660 us/op
+# Warmup Iteration  16: 648.683 us/op
+# Warmup Iteration  17: 695.105 us/op
+# Warmup Iteration  18: 660.389 us/op
+# Warmup Iteration  19: 669.004 us/op
+# Warmup Iteration  20: 666.366 us/op
+Iteration   1: 639.987 us/op
+Iteration   2: 590.770 us/op
+Iteration   3: 623.904 us/op
+Iteration   4: 607.739 us/op
+Iteration   5: 622.883 us/op
+Iteration   6: 642.173 us/op
+Iteration   7: 643.466 us/op
+Iteration   8: 615.849 us/op
+Iteration   9: 600.606 us/op
+Iteration  10: 619.184 us/op
+Iteration  11: 647.201 us/op
+Iteration  12: 684.658 us/op
+Iteration  13: 850.194 us/op
+Iteration  14: 746.842 us/op
+Iteration  15: 881.197 us/op
+Iteration  16: 893.075 us/op
+Iteration  17: 918.804 us/op
+Iteration  18: 810.904 us/op
+Iteration  19: 729.272 us/op
+Iteration  20: 708.691 us/op
+
+# Run progress: 83.33% complete, ETA 00:01:44
+# Fork: 2 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:29:10.269117: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:29:10.269148: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+464.837 us/op
+# Warmup Iteration   2: 458.671 us/op
+# Warmup Iteration   3: 521.057 us/op
+# Warmup Iteration   4: 590.175 us/op
+# Warmup Iteration   5: 605.568 us/op
+# Warmup Iteration   6: 598.947 us/op
+# Warmup Iteration   7: 560.863 us/op
+# Warmup Iteration   8: 601.977 us/op
+# Warmup Iteration   9: 602.459 us/op
+# Warmup Iteration  10: 622.727 us/op
+# Warmup Iteration  11: 733.452 us/op
+# Warmup Iteration  12: 822.862 us/op
+# Warmup Iteration  13: 785.667 us/op
+# Warmup Iteration  14: 755.834 us/op
+# Warmup Iteration  15: 734.529 us/op
+# Warmup Iteration  16: 694.654 us/op
+# Warmup Iteration  17: 661.281 us/op
+# Warmup Iteration  18: 650.707 us/op
+# Warmup Iteration  19: 725.309 us/op
+# Warmup Iteration  20: 648.174 us/op
+Iteration   1: 597.816 us/op
+Iteration   2: 579.263 us/op
+Iteration   3: 584.057 us/op
+Iteration   4: 603.230 us/op
+Iteration   5: 619.072 us/op
+Iteration   6: 632.141 us/op
+Iteration   7: 634.510 us/op
+Iteration   8: 602.336 us/op
+Iteration   9: 580.312 us/op
+Iteration  10: 588.262 us/op
+Iteration  11: 597.691 us/op
+Iteration  12: 607.580 us/op
+Iteration  13: 601.401 us/op
+Iteration  14: 609.499 us/op
+Iteration  15: 610.499 us/op
+Iteration  16: 603.384 us/op
+Iteration  17: 577.438 us/op
+Iteration  18: 577.535 us/op
+Iteration  19: 579.412 us/op
+Iteration  20: 576.313 us/op
+
+# Run progress: 91.67% complete, ETA 00:00:52
+# Fork: 3 of 3
+# Warmup Iteration   1: Lib path = /Users/Ananth/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.:/usr/local/lib/python3.5/site-packages/jep
+3.5.1
+Status of loaded model ... true
+2017-10-15 00:30:01.917989: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-15 00:30:01.918018: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+Loaded model from disk
+476.974 us/op
+# Warmup Iteration   2: 468.671 us/op
+# Warmup Iteration   3: 531.641 us/op
+# Warmup Iteration   4: 569.437 us/op
+# Warmup Iteration   5: 580.902 us/op
+# Warmup Iteration   6: 581.245 us/op
+# Warmup Iteration   7: 605.717 us/op
+# Warmup Iteration   8: 589.216 us/op
+# Warmup Iteration   9: 580.015 us/op
+# Warmup Iteration  10: 559.725 us/op
+# Warmup Iteration  11: 536.851 us/op
+# Warmup Iteration  12: 536.570 us/op
+# Warmup Iteration  13: 544.656 us/op
+# Warmup Iteration  14: 559.245 us/op
+# Warmup Iteration  15: 558.370 us/op
+# Warmup Iteration  16: 558.869 us/op
+# Warmup Iteration  17: 541.572 us/op
+# Warmup Iteration  18: 535.389 us/op
+# Warmup Iteration  19: 537.291 us/op
+# Warmup Iteration  20: 629.940 us/op
+Iteration   1: 559.810 us/op
+Iteration   2: 568.380 us/op
+Iteration   3: 593.886 us/op
+Iteration   4: 685.736 us/op
+Iteration   5: 614.231 us/op
+Iteration   6: 576.987 us/op
+Iteration   7: 598.997 us/op
+Iteration   8: 644.706 us/op
+Iteration   9: 581.476 us/op
+Iteration  10: 564.538 us/op
+Iteration  11: 565.151 us/op
+Iteration  12: 545.000 us/op
+Iteration  13: 539.917 us/op
+Iteration  14: 523.725 us/op
+Iteration  15: 517.255 us/op
+Iteration  16: 534.879 us/op
+Iteration  17: 536.535 us/op
+Iteration  18: 535.879 us/op
+Iteration  19: 544.498 us/op
+Iteration  20: 553.521 us/op
+
+
+Result "github.ananthc.sampleapps.apex.xgboost.XGBoostJepBenchMarkDepth9.testXGBoostPredictIrisDepth9":
+  623.738 ±(99.9%) 39.694 us/op [Average]
+  (min, avg, max) = (517.255, 623.738, 918.804), stdev = 88.781
+  CI (99.9%): [584.044, 663.432] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:10:27
+
+Benchmark                                                   Mode  Cnt    Score    Error  Units
+XGBoostJepBenchMarkDepth125.testXGBoostPredictIrisDepth125  avgt   60  547.569 ± 17.643  us/op
+XGBoostJepBenchMarkDepth27.testXGBoostPredictIrisDepth27    avgt   60  607.987 ± 20.997  us/op
+XGBoostJepBenchMarkDepth3.testXGBoostPredictIrisDepth3      avgt   60  684.811 ± 45.127  us/op
+XGBoostJepBenchMarkDepth9.testXGBoostPredictIrisDepth9      avgt   60  623.738 ± 39.694  us/op
